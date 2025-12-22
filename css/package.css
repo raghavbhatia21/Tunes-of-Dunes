@@ -1,0 +1,183 @@
+/* Package Builder Styles */
+
+/* Add to Package Button */
+.btn-add-package {
+    width: 100%;
+    margin-top: auto;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.btn-add-package.added {
+    background-color: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+}
+
+.btn-add-package.added::before {
+    content: '\f00c';
+    /* FontAwesome Check */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 6px;
+}
+
+/* Package Summary Bar */
+.package-summary-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid var(--color-border);
+    padding: 1rem 0;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+    z-index: 1002;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.package-summary-bar.active {
+    transform: translateY(0);
+}
+
+.package-summary-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.package-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.package-count {
+    font-weight: 600;
+    color: var(--color-text-dark);
+}
+
+/* Package Modal Specifics */
+.package-modal-content {
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    /* Slightly wider than contact modal */
+}
+
+.package-list {
+    list-style: none;
+    text-align: left;
+    margin: 1.5rem 0;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.package-list li {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+.package-list li:last-child {
+    border-bottom: none;
+}
+
+.package-item-remove {
+    color: #ff4757;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 4px;
+    transition: color 0.2s;
+}
+
+.package-item-remove:hover {
+    color: #d63031;
+}
+
+.package-actions {
+    margin-top: 1.5rem;
+}
+
+.package-actions .btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact-modal-overlay.active {
+    z-index: 1005;
+    /* Ensure above summary bar */
+}
+
+/* Adjustments for Mobile */
+@media (max-width: 768px) {
+    .package-summary-bar {
+        padding: 0.8rem 1rem;
+    }
+
+    .package-count {
+        font-size: 0.9rem;
+    }
+}
+
+/* Package Form Styles */
+.package-form {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.package-form input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.package-form input:focus {
+    border-color: var(--color-primary);
+}
+
+.package-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-text-dark);
+}
+
+/* Modal Title Update */
+.modal-title-step {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: -5px;
+    margin-bottom: 15px;
+}

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tunes and Dunes | Jaisalmer Luxury Tours</title>
+    <meta name="description"
+        content="Experience the magic of Jaisalmer with Tunes and Dunes. Luxury desert safaris, cultural tours, and unforgettable memories in the Golden City.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Use only Inter as requested for simplicity -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/package.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <!-- Mobile Menu Toggle (Left) -->
+                <div class="mobile-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+
+                <!-- Logo (Center on Mobile, Left on Desktop) -->
+                <a href="#" class="logo">TUNES OF DUNES</a>
+
+                <!-- Mobile Contact Trigger (Right) -->
+                <div class="mobile-contact">
+                    <button id="contactModalTrigger" class="contact-trigger-btn" aria-label="Open Contact Info">
+                        <i class="fas fa-phone-alt"></i>
+                    </button>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <ul class="nav-links">
+                    <li><a href="#features">Why Us</a></li>
+                    <li><a href="#tours">Tours</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+
+                <!-- Desktop Book Now Button (Hidden on Mobile via CSS logic if needed, or kept as part of nav-links) -->
+                <div class="nav-links" style="margin-left: 0;">
+                    <a href="#contact" class="btn btn-primary">Book Now</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contact Info Modal -->
+    <div class="contact-modal-overlay" id="contactModal">
+        <div class="contact-modal-content">
+            <button class="modal-close" id="contactModalClose">&times;</button>
+
+            <div class="modal-header">
+                <h3>TUNES OF DUNES</h3>
+                <p>Jaisalmer Luxury Tours</p>
+            </div>
+
+            <div class="modal-body">
+                <p class="modal-intro">Explore the Golden City with comfort and ease. We offer premium desert safaris,
+                    cultural tours, and unforgettable memories.</p>
+
+                <div class="contact-block">
+                    <h4>Address</h4>
+                    <p>Fort Road, Near Fort Parking,<br>Jaisalmer, Rajasthan 345001</p>
+                </div>
+
+                <div class="contact-block">
+                    <h4>Phone</h4>
+                    <a href="tel:+919079881992" class="contact-link">+91 9079881992</a>
+                </div>
+
+                <div class="contact-block">
+                    <h4>Email</h4>
+                    <a href="mailto:info@tunesanddunes.com" class="contact-link">info@tunesanddunes.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="hero-slide active">
+                <img src="assets/images/hero.png" alt="Golden Sand Dunes of Jaisalmer">
+            </div>
+            <div class="hero-slide">
+                <img src="assets/images/slide2.png" alt="Camel Safari in Jaisalmer">
+            </div>
+            <div class="hero-slide">
+                <img src="assets/images/slide3.png" alt="Jaisalmer Fort">
+            </div>
+            <div class="hero-slide">
+                <img src="assets/images/cultural.png" alt="Cultural Experience">
+            </div>
+        </div>
+
+        <!-- Slider Controls -->
+        <button class="slider-prev" aria-label="Previous slide">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="slider-next" aria-label="Next slide">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Slider Indicators -->
+        <div class="slider-indicators">
+            <span class="slider-indicator active"></span>
+            <span class="slider-indicator"></span>
+            <span class="slider-indicator"></span>
+            <span class="slider-indicator"></span>
+        </div>
+        <div class="hero-content container">
+            <h1 id="heroTitle">Discover the Golden City</h1>
+            <p id="heroDescription">Experience the timeless beauty of Jaisalmer with our premium desert safaris and
+                cultural tours. Where
+                luxury meets tradition.</p>
+            <a href="#tours" class="btn btn-primary">Experience Now</a>
+        </div>
+    </section>
+
+    <!-- Features Section (Replaces About) -->
+    <section id="features" class="section-padding features">
+        <div class="container">
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Competitive Pricing</h3>
+                    <p>Experience luxury without the premium price tag. Best value guaranteed.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Wide Coverage</h3>
+                    <p>From the Golden Fort to the deep Sam Dunes, we cover every inch of Jaisalmer.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Fast Booking</h3>
+                    <p>Instant confirmation and seamless support for a hassle-free journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tours Section -->
+    <section id="tours" class="section-padding tours">
+        <div class="container">
+            <div class="section-header">
+                <h2>Curated Experiences</h2>
+                <p>Discover our handpicked desert adventures - something special for everyone</p>
+            </div>
+
+            <div class="tours-grid">
+                <!-- Tour Card 1 -->
+                <div class="tour-card">
+                    <span class="tour-badge">Most Popular</span>
+                    <div class="tour-image">
+                        <img src="assets/images/camel.png" alt="Sunset Camel Safari">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Sunset Camel Safari</h3>
+                        <div class="tour-meta">
+                            <span><i class="far fa-clock"></i> 4 Hours</span>
+                            <span><i class="fas fa-user-friends"></i> Guided</span>
+                            <span><i class="fas fa-star"></i> 4.9/5</span>
+                        </div>
+                        <p>Witness the magical sunset over the Sam Sand Dunes while riding the ship of the desert.
+                            Includes high tea and folk dance performance.</p>
+                        <button class="btn btn-outline btn-sm btn-add-package" data-tour="Sunset Camel Safari">Add to
+                            Package</button>
+                    </div>
+                </div>
+
+                <!-- Tour Card 2 -->
+                <div class="tour-card">
+                    <span class="tour-badge">Best Value</span>
+                    <div class="tour-image">
+                        <img src="assets/images/luxury_camping.png" alt="Royal Desert Camping">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Royal Desert Camping</h3>
+                        <div class="tour-meta">
+                            <span><i class="far fa-clock"></i> Overnight</span>
+                            <span><i class="fas fa-campground"></i> Luxury Tents</span>
+                            <span><i class="fas fa-star"></i> 5.0/5</span>
+                        </div>
+                        <p>Spend a night under the stars in our luxury Swiss tents. Enjoy traditional Rajasthani dinner,
+                            bonfire, and cultural program.</p>
+                        <button class="btn btn-outline btn-sm btn-add-package" data-tour="Royal Desert Camping">Add to
+                            Package</button>
+                    </div>
+                </div>
+
+                <!-- Tour Card 3 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="assets/images/jeep_safari.png" alt="Jeep Safari Adventure">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Jeep Safari Adventure</h3>
+                        <div class="tour-meta">
+                            <span><i class="far fa-clock"></i> 2 Hours</span>
+                            <span><i class="fas fa-car"></i> 4x4 Jeep</span>
+                            <span><i class="fas fa-star"></i> 4.8/5</span>
+                        </div>
+                        <p>For the thrill-seekers! Bash the dunes in a 4x4 Jeep and explore the deeper parts of the
+                            desert landscape with expert drivers.</p>
+                        <button class="btn btn-outline btn-sm btn-add-package" data-tour="Jeep Safari Adventure">Add to
+                            Package</button>
+                    </div>
+                </div>
+
+                <!-- Tour Card 4 -->
+                <div class="tour-card">
+                    <span class="tour-badge">Night Special</span>
+                    <div class="tour-image">
+                        <img src="assets/images/stargazing.png" alt="Stargazing Experience">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Stargazing Experience</h3>
+                        <div class="tour-meta">
+                            <span><i class="far fa-clock"></i> 2 Hours</span>
+                            <span><i class="fas fa-star"></i> Astronomy</span>
+                            <span><i class="fas fa-star"></i> 5.0/5</span>
+                        </div>
+                        <p>Marvel at the crystal clear desert sky. Guided astronomy session exploring constellations,
+                            planets, and the Milky Way.</p>
+                        <button class="btn btn-outline btn-sm btn-add-package" data-tour="Stargazing Experience">Add to
+                            Package</button>
+                    </div>
+                </div>
+
+                <!-- Tour Card 5 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="assets/images/cultural.png" alt="Cultural Evening">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Cultural Evening Experience</h3>
+                        <div class="tour-meta">
+                            <span><i class="far fa-clock"></i> 3 Hours</span>
+                            <span><i class="fas fa-music"></i> Live Performance</span>
+                            <span><i class="fas fa-star"></i> 4.9/5</span>
+                        </div>
+                        <p>Immerse yourself in Rajasthani culture with folk music, traditional dance, puppet shows, and
+                            authentic local cuisine.</p>
+                        <button class="btn btn-outline btn-sm btn-add-package"
+                            data-tour="Cultural Evening Experience">Add to Package</button>
+                    </div>
+                </div>
+
+                <!-- Tour Card 6 -->
+                <div class="tour-card">
+                    <span class="tour-badge">Romantic</span>
+                    <div class="tour-image">
+                        <img src="assets/images/dinner.png" alt="Desert Dinner Under Stars">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Desert Dinner Under Stars</h3>
+                        <div class="tour-meta">
+                            <span><i class="far fa-clock"></i> 2 Hours</span>
+                            <span><i class="fas fa-utensils"></i> Fine Dining</span>
+                            <span><i class="fas fa-star"></i> 5.0/5</span>
+                        </div>
+                        <p>Romantic candlelit dinner in the desert with gourmet Rajasthani cuisine, private setup, and
+                            stargazing experience.</p>
+                        <button class="btn btn-outline btn-sm btn-add-package" data-tour="Desert Dinner Under Stars">Add
+                            to Package</button>
+                    </div>
+                </div>
+
+                <!-- Tour Card 7 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="assets/images/slide2.png" alt="Heritage Fort Tour">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Heritage Fort & City Tour</h3>
+                        <div class="tour-meta">
+                            <span><i class="far fa-clock"></i> 6 Hours</span>
+                            <span><i class="fas fa-landmark"></i> Historical</span>
+                            <span><i class="fas fa-star"></i> 4.7/5</span>
+                        </div>
+                        <p>Explore Jaisalmer Fort, Patwon Ki Haveli, and local markets with expert guide. Includes lunch
+                            at heritage restaurant.</p>
+                        <button class="btn btn-outline btn-sm btn-add-package" data-tour="Heritage Fort & City Tour">Add
+                            to Package</button>
+                    </div>
+                </div>
+
+                <!-- Tour Card 8 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="assets/images/slide3.png" alt="Photography Tour">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Photography Expedition</h3>
+                        <div class="tour-meta">
+                            <span><i class="far fa-clock"></i> Full Day</span>
+                            <span><i class="fas fa-camera"></i> Pro Guide</span>
+                            <span><i class="fas fa-star"></i> 4.9/5</span>
+                        </div>
+                        <p>Capture stunning shots at best locations with professional photographer guide. Sunrise to
+                            sunset coverage included.</p>
+                        <button class="btn btn-outline btn-sm btn-add-package" data-tour="Photography Expedition">Add to
+                            Package</button>
+                    </div>
+                </div>
+                <!-- Tour Card 9 -->
+                <div class="tour-card">
+                    <span class="tour-badge">Authentic</span>
+                    <div class="tour-image">
+                        <img src="assets/images/village_tour.png" alt="Village Life Tour">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Village Life Tour</h3>
+                        <div class="tour-meta">
+                            <span><i class="far fa-clock"></i> 4 Hours</span>
+                            <span><i class="fas fa-home"></i> Culture</span>
+                            <span><i class="fas fa-star"></i> 4.8/5</span>
+                        </div>
+                        <p>Experience the real rural Rajasthan. Visit traditional mud houses, meet local artisans, and
+                            enjoy authentic home-cooked food.</p>
+                        <button class="btn btn-outline btn-sm btn-add-package" data-tour="Village Life Tour">Add to
+                            Package</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Mobile Slider Version -->
+            <div class="tours-slider-mobile">
+                <div class="tours-slider-wrapper">
+                    <div class="tours-slider-track" id="toursSliderTrack">
+                        <div class="tour-card tour-card-mobile">
+                            <span class="tour-badge">Most Popular</span>
+                            <div class="tour-image"><img src="assets/images/camel.png" alt="Sunset Camel Safari"></div>
+                            <div class="tour-content">
+                                <h3>Sunset Camel Safari</h3>
+                                <div class="tour-meta"><span><i class="far fa-clock"></i> 4 Hours</span><span><i
+                                            class="fas fa-star"></i> 4.9/5</span></div>
+                                <p>Witness the magical sunset over the Sam Sand Dunes.</p>
+                                <button class="btn btn-outline btn-sm btn-add-package"
+                                    data-tour="Sunset Camel Safari">Add to Package</button>
+                            </div>
+                        </div>
+                        <div class="tour-card tour-card-mobile">
+                            <span class="tour-badge">Best Value</span>
+                            <div class="tour-image"><img src="assets/images/luxury_camping.png"
+                                    alt="Royal Desert Camping">
+                            </div>
+                            <div class="tour-content">
+                                <h3>Royal Desert Camping</h3>
+                                <div class="tour-meta"><span><i class="far fa-clock"></i> Overnight</span><span><i
+                                            class="fas fa-star"></i> 5.0/5</span></div>
+                                <p>Luxury Swiss tents with traditional dinner.</p>
+                                <button class="btn btn-outline btn-sm btn-add-package"
+                                    data-tour="Royal Desert Camping">Add to Package</button>
+                            </div>
+                        </div>
+                        <div class="tour-card tour-card-mobile">
+                            <div class="tour-image"><img src="assets/images/jeep_safari.png" alt="Jeep Safari"></div>
+                            <div class="tour-content">
+                                <h3>Jeep Safari Adventure</h3>
+                                <div class="tour-meta"><span><i class="far fa-clock"></i> 2 Hours</span><span><i
+                                            class="fas fa-star"></i> 4.8/5</span></div>
+                                <p>Bash the dunes in a 4x4 Jeep.</p>
+                                <button class="btn btn-outline btn-sm btn-add-package"
+                                    data-tour="Jeep Safari Adventure">Add to Package</button>
+                            </div>
+                        </div>
+                        <div class="tour-card tour-card-mobile">
+                            <span class="tour-badge">Night Special</span>
+                            <div class="tour-image"><img src="assets/images/stargazing.png" alt="Stargazing Experience">
+                            </div>
+                            <div class="tour-content">
+                                <h3>Stargazing Experience</h3>
+                                <div class="tour-meta"><span><i class="far fa-clock"></i> 2 Hours</span><span><i
+                                            class="fas fa-star"></i> 5.0/5</span></div>
+                                <p>Guided astronomy session under the desert sky.</p>
+                                <button class="btn btn-outline btn-sm btn-add-package"
+                                    data-tour="Stargazing Experience">Add to Package</button>
+                            </div>
+                        </div>
+                        <div class="tour-card tour-card-mobile">
+                            <div class="tour-image"><img src="assets/images/cultural.png" alt="Cultural Evening"></div>
+                            <div class="tour-content">
+                                <h3>Cultural Evening</h3>
+                                <div class="tour-meta"><span><i class="far fa-clock"></i> 3 Hours</span><span><i
+                                            class="fas fa-star"></i> 4.9/5</span></div>
+                                <p>Folk music, dance, and cuisine.</p>
+                                <button class="btn btn-outline btn-sm btn-add-package" data-tour="Cultural Evening">Add
+                                    to Package</button>
+                            </div>
+                        </div>
+                        <div class="tour-card tour-card-mobile">
+                            <span class="tour-badge">Romantic</span>
+                            <div class="tour-image"><img src="assets/images/dinner.png" alt="Desert Dinner"></div>
+                            <div class="tour-content">
+                                <h3>Desert Dinner Under Stars</h3>
+                                <div class="tour-meta"><span><i class="far fa-clock"></i> 2 Hours</span><span><i
+                                            class="fas fa-star"></i> 5.0/5</span></div>
+                                <p>Romantic candlelit dinner.</p>
+                                <button class="btn btn-outline btn-sm btn-add-package"
+                                    data-tour="Desert Dinner Under Stars">Add to Package</button>
+                            </div>
+                        </div>
+                        <div class="tour-card tour-card-mobile">
+                            <div class="tour-image"><img src="assets/images/slide2.png" alt="Heritage Tour"></div>
+                            <div class="tour-content">
+                                <h3>Heritage Fort Tour</h3>
+                                <div class="tour-meta"><span><i class="far fa-clock"></i> 6 Hours</span><span><i
+                                            class="fas fa-star"></i> 4.7/5</span></div>
+                                <p>Explore Jaisalmer Fort and markets.</p>
+                                <button class="btn btn-outline btn-sm btn-add-package"
+                                    data-tour="Heritage Fort & City Tour">Add to Package</button>
+                            </div>
+                        </div>
+                        <div class="tour-card tour-card-mobile">
+                            <div class="tour-image"><img src="assets/images/slide3.png" alt="Photography Tour"></div>
+                            <div class="tour-content">
+                                <h3>Photography Expedition</h3>
+                                <div class="tour-meta"><span><i class="far fa-clock"></i> Full Day</span><span><i
+                                            class="fas fa-star"></i> 4.9/5</span></div>
+                                <p>Capture stunning shots with pro guide.</p>
+                                <button class="btn btn-outline btn-sm btn-add-package"
+                                    data-tour="Photography Expedition">Add to Package</button>
+                            </div>
+                        </div>
+                        <div class="tour-card tour-card-mobile">
+                            <span class="tour-badge">Authentic</span>
+                            <div class="tour-image"><img src="assets/images/village_tour.png" alt="Village Life Tour">
+                            </div>
+                            <div class="tour-content">
+                                <h3>Village Life Tour</h3>
+                                <div class="tour-meta"><span><i class="far fa-clock"></i> 4 Hours</span><span><i
+                                            class="fas fa-star"></i> 4.8/5</span></div>
+                                <p>Experience real rural Rajasthan and artisans.</p>
+                                <button class="btn btn-outline btn-sm btn-add-package" data-tour="Village Life Tour">Add
+                                    to Package</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tours-slider-dots" id="toursSliderDots"></div>
+
+        </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <i class="fas fa-hotel service-icon"></i>
+                    <h3>Hotel Booking</h3>
+                    <p>Best rates at premium heritage hotels and resorts.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-car service-icon"></i>
+                    <h3>Taxi Service</h3>
+                    <p>Comfortable transfers and local sightseeing.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-music service-icon"></i>
+                    <h3>Cultural Events</h3>
+                    <p>Arrangements for folk music and dance performances.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-camera service-icon"></i>
+                    <h3>Photography Tours</h3>
+                    <p>Guided tours to the best photogenic spots.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Tunes & Dunes</h4>
+                    <p>Making your Jaisalmer trip unforgettable with our premium services and warm hospitality.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#tours">Our Tours</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> +91 9079881992</li>
+                        <li><i class="fas fa-envelope"></i> info@tunesanddunes.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Fort Road, Jaisalmer</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Tunes Of Dunes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+
+    <!-- Package Summary Bar -->
+    <div class="package-summary-bar" id="packageSummaryBar">
+        <div class="container package-summary-content">
+            <div class="package-info">
+                <span class="package-count"><span id="packageCount">0</span> Experiences Selected</span>
+            </div>
+            <button class="btn btn-primary btn-sm" id="viewPackageBtn">Review Package</button>
+        </div>
+    </div>
+
+    <!-- Package Review Modal -->
+    <div class="contact-modal-overlay" id="packageModal">
+        <div class="contact-modal-content package-modal-content">
+            <button class="modal-close" id="packageModalClose">&times;</button>
+            <div class="modal-header">
+                <h3>Finalize Your Package</h3>
+                <p>Review your selection and provide details</p>
+            </div>
+            <div class="modal-body">
+                <ul id="packageList" class="package-list">
+                    <!-- Items will be injected here -->
+                </ul>
+
+                <form id="packageInquiryForm" class="package-form">
+                    <div class="form-group">
+                        <input type="text" id="pkgName" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="pkgPhone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="date" id="pkgDate" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="pkgGuests" placeholder="Guests" min="1" required>
+                        </div>
+                    </div>
+
+                    <div class="package-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fab fa-whatsapp"></i> Send Inquiry via WhatsApp
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
