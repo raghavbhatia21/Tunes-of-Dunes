@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hero slide content
     const heroContent = [
         {
-            title: "Discover the Golden City",
+            title: "Jaisalmer Tour Package – Explore the Golden City of Rajasthan",
             description: "Experience the timeless beauty of Jaisalmer with our premium desert safaris and cultural tours. Where luxury meets tradition."
         },
         {
@@ -548,4 +548,91 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = '';
         }
     });
+
+    // --- PACKAGE FILTER LOGIC ---
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const filterSections = document.querySelectorAll('.filter-section');
+
+    if (filterBtns.length > 0) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // 1. Toggle Active State on Buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // 2. Get Filter Target
+                const filterValue = btn.getAttribute('data-filter');
+
+                // 3. Hide All Sections
+                filterSections.forEach(section => {
+                    section.classList.remove('active');
+                    // Force style reset to ensure animation plays again if needed, 
+                    // or let class toggle handle it via CSS (display: none vs grid)
+                });
+
+                // 4. Show Target Section
+                const targetSection = document.getElementById(`${filterValue}-packages`);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+            });
+        });
+    }
+    // --- COMBO BOOKING MODAL LOGIC ---
+    const bookingModal = document.getElementById('bookingModal');
+    const bookingModalClose = document.getElementById('bookingModalClose');
+    const bookingForm = document.getElementById('bookingForm');
+    const bookingPackageInput = document.getElementById('bookingPackageName');
+    const bookBtns = document.querySelectorAll('.btn-book-combo');
+
+    if (bookingModal) {
+        // Open Modal
+        bookBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const pkgName = btn.getAttribute('data-package') || 'Custom Package';
+                bookingPackageInput.value = pkgName;
+                if (bookingModal.classList.contains('active')) return;
+                bookingModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close Modal
+        if (bookingModalClose) {
+            bookingModalClose.addEventListener('click', () => {
+                bookingModal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // Close on Outside Click
+        window.addEventListener('click', (e) => {
+            if (e.target === bookingModal) {
+                bookingModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Handle Form Submit
+        if (bookingForm) {
+            bookingForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const pkg = document.getElementById('bookingPackageName').value;
+                const name = document.getElementById('bName').value;
+                const phone = document.getElementById('bPhone').value;
+                const date = document.getElementById('bDate').value;
+                const guests = document.getElementById('bGuests').value;
+
+                const message = `*Quotations Request*\n\n*Package:* ${pkg}\n*Name:* ${name}\n*Phone:* ${phone}\n*Travel Date:* ${date}\n*Guests:* ${guests}\n\nPlease provide the best quotation for this package.`;
+
+                const whatsappUrl = `https://wa.me/919079881992?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+
+                // Optional: Close modal after submit
+                bookingModal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+    }
 });

@@ -86,6 +86,8 @@ img {
     padding: 0 var(--spacing-md);
 }
 
+
+
 .btn {
     display: inline-block;
     padding: 0.8rem 2rem;
@@ -356,10 +358,11 @@ nav {
 }
 
 .hero-content h1 {
-    font-size: 4rem;
+    font-size: 3.2rem;
     margin-bottom: var(--spacing-sm);
     font-weight: 700;
     letter-spacing: -1px;
+    line-height: 1.2;
 }
 
 .hero-content p {
@@ -718,8 +721,10 @@ footer {
     }
 
     .hero-content h1 {
-        font-size: 2rem;
-        /* Smaller title */
+        font-size: 1.6rem;
+        /* Smaller title for long text */
+        line-height: 1.3;
+        margin-bottom: 1rem;
     }
 
     /* About & Global Mobile Spacing */
@@ -1207,4 +1212,603 @@ footer {
 .contact-link:hover {
     color: var(--color-primary);
     text-decoration: underline;
+}
+
+/* =========================================
+   NEW SECTIONS STYLING (Combos, Blog, SEO)
+   ================================********* */
+
+/* --- Best Value Combos --- */
+.combos {
+    background: var(--color-bg-light);
+}
+
+.combo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.combo-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-smooth);
+    border: 1px solid var(--color-border);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.combo-card.featured {
+    border: 2px solid var(--color-primary);
+    transform: scale(1.02);
+}
+
+.combo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.combo-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.combo-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.combo-card:hover .combo-image img {
+    transform: scale(1.1);
+}
+
+.combo-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #FFD700;
+    color: #000;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.combo-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.combo-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-dark);
+}
+
+.combo-content p {
+    color: var(--color-text-gray);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.tour-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    /* Allow content to fill space */
+    display: flex;
+    /* Enable flexbox */
+    flex-direction: column;
+    /* Stack children vertically */
+}
+
+.tour-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-dark);
+}
+
+.tour-content p {
+    color: var(--color-text-gray);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+/* Ensure button hits bottom */
+.tour-content .btn {
+    margin-top: auto;
+    align-self: flex-start;
+    /* Or center/stretch based on design preference. Default is stretch if not set, making button full width if not careful, but .btn usually has width. Let's stick to align-self: start or just margin-top: auto. */
+}
+
+.combo-features {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.combo-features li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-text-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.combo-features i {
+    color: var(--color-primary);
+}
+
+.combo-price {
+    margin-top: auto;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.price-tag {
+    background: rgba(197, 160, 89, 0.1);
+    color: var(--color-primary);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Coming Soon Card */
+.combo-card.coming-soon {
+    background: #f9f9f9;
+    border: 1px dashed #ccc;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 300px;
+}
+
+.coming-soon-label {
+    background: #eee;
+    color: #888;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+/* --- SEO Content Block --- */
+.seo-content {
+    background: #fff;
+    border-top: 1px solid var(--color-border);
+}
+
+.seo-content h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-dark);
+}
+
+.seo-text-block {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #555;
+    line-height: 1.8;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.seo-text-block p {
+    margin-bottom: 1rem;
+}
+
+/* --- Common Page Header --- */
+.page-header {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 60px;
+    /* Header Offset */
+}
+
+/* Overlay for readability */
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.page-header .container {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    /* Bolder */
+    margin-bottom: 1rem;
+    color: #fff;
+    line-height: 1.2;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    .combo-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    color: #f0f0f0;
+    letter-spacing: 0.5px;
+}
+
+.page-header-badge {
+    background: var(--color-primary);
+    color: #fff;
+    /* White text for premium feel? Or Black? Let's go White with text-shadow or Black without. Gold usually needs Black. Let's try Black but cleaner. */
+    color: #2c2c2c;
+    padding: 6px 18px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* --- Blog Layout --- */
+.blog-list {
+    background: var(--color-bg-light);
+}
+
+.blog-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+/* Responsive adjustment for Blog */
+@media (max-width: 900px) {
+    .blog-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Override global tours-grid hide for Blog page */
+    .blog-list .tours-grid {
+        display: grid !important;
+        /* Force show */
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+.blog-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    color: var(--color-primary);
+}
+
+.blog-content p {
+    margin-bottom: 1.2rem;
+    line-height: 1.8;
+    color: #444;
+    /* Darker for readability on light theme, or if dark theme is desired adjust */
+}
+
+.blog-content ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 1.5rem;
+    color: #444;
+}
+
+.blog-content strong {
+    color: var(--color-text-dark);
+}
+
+/* Sidebar */
+.blog-sidebar .sidebar-widget {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.sidebar-widget h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 0.5rem;
+    color: var(--color-text-dark);
+    display: inline-block;
+}
+
+.related-package-card {
+    background: var(--color-bg-light);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    border: 1px solid var(--color-border);
+}
+
+.related-package-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.related-package-content {
+    padding: 1rem;
+}
+
+.related-package-content h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-dark);
+}
+
+.sidebar-categories {
+    list-style: none;
+}
+
+.sidebar-categories li {
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.sidebar-categories li:last-child {
+    border-bottom: none;
+}
+
+.sidebar-categories a {
+    color: var(--color-text-gray);
+    font-weight: 500;
+    display: block;
+}
+
+.sidebar-categories a:hover {
+    color: var(--color-primary);
+    padding-left: 5px;
+}
+
+/* Mobile Responsiveness for Blog */
+@media (max-width: 900px) {
+    .blog-container {
+        grid-template-columns: 1fr;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+}
+
+/* --- Package Page Filters --- */
+.package-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    padding: 0.6rem 2rem;
+    border-radius: 50px;
+    /* Pill shape */
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--color-text-gray);
+    font-family: var(--font-body);
+}
+
+.filter-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: rgba(197, 160, 89, 0.05);
+}
+
+.filter-btn.active {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 10px rgba(197, 160, 89, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Filter Selection Visibility Control */
+.filter-section {
+    display: none;
+    /* Default hidden */
+}
+
+.filter-section.active {
+    display: grid;
+    /* Match tours-grid display type */
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Contact & Booking Modal Styles --- */
+.contact-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999 !important;
+    /* Force top */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.contact-modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.contact-modal {
+    background: #fff;
+    width: 90%;
+    max-width: 500px;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-modal-overlay.active .contact-modal {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #f0f0f0;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #333;
+}
+
+.modal-close:hover {
+    background: #ff4757;
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+.modal-header-content {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-header-content h3 {
+    font-size: 1.8rem;
+    color: var(--color-text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.modal-header-content p {
+    color: var(--color-text-gray);
+    font-size: 0.95rem;
+}
+
+/* Form Styles */
+.contact-form .form-group {
+    margin-bottom: 1.2rem;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--color-text-dark);
+    font-size: 0.9rem;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background: #f9f9f9;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+}
+
+.contact-form .form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.contact-form .form-row .form-group {
+    flex: 1;
+}
+
+.contact-form .btn-block {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 1rem;
 }
