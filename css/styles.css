@@ -1894,3 +1894,49 @@ footer {
     line-height: 1.6;
     font-size: 0.95rem;
 }
+
+/* Coming Soon Polishes */
+.coming-soon-card {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    background: rgba(197, 160, 89, 0.03);
+    border: 2px dashed var(--color-border);
+    border-radius: 20px;
+    margin: 2rem 0;
+}
+
+.coming-soon-card h3 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.coming-soon-card p {
+    font-size: 1.1rem;
+    color: var(--color-text-gray);
+}
+
+.combo-card.coming-soon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 400px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px dashed var(--color-border);
+}
+
+.coming-soon-label {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
