@@ -11,6 +11,22 @@
         content="Camel Safari Jaisalmer, Desert Safari Tips, Sam Sand Dunes, Jaisalmer Camel Ride, Best Camel Safari">
     <link rel="canonical" href="https://tunesofdunes.netlify.app/html/blogs/camel-safari-guide.html">
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tunesofdunes.netlify.app/html/blogs/camel-safari-guide.html">
+    <meta property="og:title" content="Ultimate Guide to Camel Safari Jaisalmer | Tunes of Dunes">
+    <meta property="og:description"
+        content="Everything you need to know about experiencing the Sam Sand Dunes on camelback. Tips for sunset and sunrise safaris in Jaisalmer.">
+    <meta property="og:image" content="https://tunesofdunes.netlify.app/assets/images/camel.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://tunesofdunes.netlify.app/html/blogs/camel-safari-guide.html">
+    <meta property="twitter:title" content="Ultimate Guide to Camel Safari Jaisalmer | Tunes of Dunes">
+    <meta property="twitter:description"
+        content="Everything you need to know about experiencing the Sam Sand Dunes on camelback. Tips for sunset and sunrise safaris in Jaisalmer.">
+    <meta property="twitter:image" content="https://tunesofdunes.netlify.app/assets/images/camel.png">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../../assets/images/tunes of dunes.png">
 
@@ -100,7 +116,7 @@
                     </button>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="../../index.html#features">Why Us</a></li>
+                    <li><a href="../../index.html">Home</a></li>
                     <li><a href="../packages.html">Custom Packages</a></li>
                     <li><a href="../blog.html">Blog</a></li>
                     <li><a href="../../index.html#services">Services</a></li>
@@ -207,7 +223,7 @@
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="../../index.html#features">Why Us</a></li>
+                        <li><a href="../../index.html">Home</a></li>
                         <li><a href="../packages.html">Custom Packages</a></li>
                         <li><a href="../blog.html">Blog</a></li>
                         <li><a href="../../index.html#services">Services</a></li>
@@ -216,11 +232,11 @@
                 <div class="footer-col">
                     <h4>Contact Us</h4>
                     <ul class="footer-links">
-                        <li><i class="fas fa-phone"></i> +91 9079881992</li>
-                        <li><i class="fas fa-envelope"></i> info@tunesanddunes.com</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+919079881992">+91 9079881992</a></li>
+                        <li><i class="fas fa-envelope"></i> <a
+                                href="mailto:info@tunesanddunes.com">info@tunesanddunes.com</a></li>
                         <li><i class="fas fa-map-marker-alt"></i> Fort Road, Jaisalmer</li>
-                        <li><i class="fab fa-google"></i> <a href="#" target="_blank"
-                                style="color: #ccc; text-decoration: none;">Review on Google</a></li>
+                        <li><i class="fab fa-google"></i> <a href="#" target="_blank">Review on Google</a></li>
                     </ul>
                 </div>
             </div>
@@ -235,21 +251,83 @@
     <div class="contact-modal-overlay" id="contactModal">
         <div class="contact-modal-content">
             <button class="modal-close" id="contactModalClose">&times;</button>
+
             <div class="modal-header">
                 <h3>TUNES OF DUNES</h3>
-                <p>Contact Us</p>
+                <p>Jaisalmer Luxury Tours</p>
             </div>
+
             <div class="modal-body">
+                <p class="modal-intro">Explore the Golden City with comfort and ease. We offer premium desert safaris,
+                    cultural tours, and unforgettable memories.</p>
+
                 <div class="contact-block">
-                    <h4>Phone</h4> <a href="tel:+919079881992" class="contact-link">+91 9079881992</a>
+                    <h4>Address</h4>
+                    <p>Fort Road, Near Fort Parking,<br>Jaisalmer, Rajasthan 345001</p>
                 </div>
+
                 <div class="contact-block">
-                    <h4>Email</h4> <a href="mailto:info@tunesanddunes.com"
-                        class="contact-link">info@tunesanddunes.com</a>
+                    <h4>Phone</h4>
+                    <a href="tel:+919079881992" class="contact-link">+91 9079881992</a>
+                </div>
+
+                <div class="contact-block">
+                    <h4>Email</h4>
+                    <a href="mailto:info@tunesanddunes.com" class="contact-link">info@tunesanddunes.com</a>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Package Summary Bar -->
+    <div class="package-summary-bar" id="packageSummaryBar">
+        <div class="container package-summary-content">
+            <div class="package-info">
+                <span class="package-count"><span id="packageCount">0</span> Experiences Selected</span>
+            </div>
+            <button class="btn btn-primary btn-sm" id="viewPackageBtn">Review Package</button>
+        </div>
+    </div>
+
+    <!-- Package Review Modal -->
+    <div class="contact-modal-overlay" id="packageModal">
+        <div class="contact-modal-content package-modal-content">
+            <button class="modal-close" id="packageModalClose">&times;</button>
+            <div class="modal-header">
+                <h3>Finalize Your Package</h3>
+                <p>Review your selection and provide details</p>
+            </div>
+            <div class="modal-body">
+                <ul id="packageList" class="package-list">
+                    <!-- Items will be injected here -->
+                </ul>
+
+                <form id="packageInquiryForm" class="package-form">
+                    <div class="form-group">
+                        <input type="text" id="pkgName" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="pkgPhone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="date" id="pkgDate" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="pkgGuests" placeholder="Guests" min="1" required>
+                        </div>
+                    </div>
+
+                    <div class="package-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fab fa-whatsapp"></i> Send Inquiry via WhatsApp
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking/Quotation Modal -->
     <div class="contact-modal-overlay" id="bookingModal">
         <div class="contact-modal">
             <button class="modal-close" id="bookingModalClose"><i class="fas fa-times"></i></button>
