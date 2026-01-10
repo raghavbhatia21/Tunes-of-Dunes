@@ -8,7 +8,7 @@ keywords: Desert Festival Jaisalmer 2026, Maru Mahotsav 2026
 thumbnail: ../assets/images/desert-festival.png
 thumbnailAlt: Desert Festival Jaisalmer
 ---
-# Desert Festival Jaisalmer
+## Desert Festival Jaisalmer
 
 The Desert Festival Jaisalmer 2026 will be one more time the Golden City turning into a lively festival of the culture, heritage and desert life of Rajasthan. Commonly called Maru Mahotsav 2026, the great festival is a magnet for travelers, photographers, and culture enthusiasts from all over India and the globe. The festival set in the sand dunes and the ancient forts of Jaisalmer gives a once, in, a, lifetime experience of the Thar Desert's soul.
 
