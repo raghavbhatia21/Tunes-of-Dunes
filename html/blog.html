@@ -174,17 +174,17 @@
             const blogGrid = document.querySelector('.blog-list .tours-grid');
             if (!blogGrid) return;
 
-            // Clear static content (optional, in case there are placeholders)
-            blogGrid.innerHTML = '';
-
             // blogPosts is globally available from the script above
-            if (typeof blogPosts !== 'undefined') {
+            if (typeof blogPosts !== 'undefined' && blogPosts.length > 0) {
+                // Clear placeholders
+                blogGrid.innerHTML = '';
+
                 blogPosts.forEach(post => {
                     const article = document.createElement('article');
                     article.className = 'tour-card';
                     article.innerHTML = `
                         <div class="tour-image">
-                            <img src="../${post.thumbnail}" alt="${post.thumbnailAlt}">
+                            <img src="../${post.thumbnail}" alt="${post.thumbnailAlt || post.title}">
                         </div>
                         <div class="tour-content">
                             <div class="tour-meta">
@@ -198,6 +198,8 @@
                     `;
                     blogGrid.appendChild(article);
                 });
+            } else {
+                blogGrid.innerHTML = '<div style="text-align:center; padding: 40px; grid-column: 1/-1;"><p>No blog posts found. Check back soon!</p></div>';
             }
         });
     </script>

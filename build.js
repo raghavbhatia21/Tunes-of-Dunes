@@ -7,12 +7,19 @@ const CONTENT_DIR = path.join(__dirname, 'content', 'blogs');
 const TEMPLATE_PATH = path.join(__dirname, 'admin', 'blog-template.html');
 const OUTPUT_DIR = path.join(__dirname, 'html', 'blogs');
 const DATA_FILE = path.join(__dirname, 'js', 'blog-posts-data.js');
+const SITEMAP_FILE = path.join(__dirname, 'sitemap.xml');
+const BASE_URL = 'https://tunesofdunes.netlify.app';
 
 // Ensure output directory exists
 if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
 const template = fs.readFileSync(TEMPLATE_PATH, 'utf8');
 const blogPosts = [];
+const sitemapUrls = [
+    { loc: `${BASE_URL}/`, priority: '1.0', changefreq: 'daily' },
+    { loc: `${BASE_URL}/html/packages.html`, priority: '0.9', changefreq: 'weekly' },
+    { loc: `${BASE_URL}/html/blog.html`, priority: '0.8', changefreq: 'weekly' }
+];
 
 const files = fs.readdirSync(CONTENT_DIR);
 
@@ -35,6 +42,14 @@ files.forEach(file => {
         category: data.category || 'Travel Guide'
     });
 
+    // Add to sitemap
+    sitemapUrls.push({
+        loc: `${BASE_URL}/html/blogs/${slug}.html`,
+        priority: '0.7',
+        changefreq: 'monthly',
+        lastmod: data.date || new Date().toISOString().split('T')[0]
+    });
+
     // Generate HTML for individual post
     const htmlBody = marked(content);
     const finalHtml = template
@@ -55,4 +70,16 @@ files.forEach(file => {
 const dataContent = `const blogPosts = ${JSON.stringify(blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date)), null, 2)};`;
 fs.writeFileSync(DATA_FILE, dataContent);
 
-console.log(`Build complete! Generated ${blogPosts.length} blog posts.`);
+// Update Sitemap
+const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapUrls.map(url => `    <url>
+        <loc>${url.loc}</loc>
+        ${url.lastmod ? `<lastmod>${url.lastmod}</lastmod>` : `<lastmod>${new Date().toISOString().split('T')[0]}</lastmod>`}
+        <changefreq>${url.changefreq}</changefreq>
+        <priority>${url.priority}</priority>
+    </url>`).join('\n')}
+</urlset>`;
+fs.writeFileSync(SITEMAP_FILE, sitemapContent);
+
+console.log(`Build complete! Generated ${blogPosts.length} blog posts and updated sitemap.`);
