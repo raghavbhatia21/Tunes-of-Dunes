@@ -31,6 +31,7 @@ files.forEach(file => {
         date: data.date ? new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '',
         metaDescription: data.metaDescription || '',
         thumbnail: data.thumbnail || 'assets/images/cultural.png',
+        thumbnailAlt: data.thumbnailAlt || data.title,
         category: data.category || 'Travel Guide'
     });
 
@@ -42,6 +43,7 @@ files.forEach(file => {
         .replace(/{{KEYWORDS}}/g, data.keywords || '')
         .replace(/{{CONTENT}}/g, htmlBody)
         .replace(/{{THUMBNAIL}}/g, data.thumbnail || 'assets/images/cultural.png')
+        .replace(/{{THUMBNAIL_ALT}}/g, data.thumbnailAlt || data.title)
         .replace(/{{DATE}}/g, data.date ? new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '')
         .replace(/{{AUTHOR}}/g, 'Tunes of Dunes')
         .replace(/{{SLUG}}/g, slug);

@@ -18,4 +18,5 @@ collections:
       - { label: "Meta Description", name: "metaDescription", widget: "text" }
       - { label: "Keywords", name: "keywords", widget: "string", required: false }
       - { label: "Thumbnail Image", name: "thumbnail", widget: "image" }
+      - { label: "Thumbnail Alt Text", name: "thumbnailAlt", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
