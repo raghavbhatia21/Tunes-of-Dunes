@@ -1,11 +1,12 @@
 ---
-title: Desert Festival Jaisalmer 2026 | Maru Mahotsav 2026 Tunes Of Dunes
+title: Desert Festival Jaisalmer 2026 | Maru Mahotsav 2026 | Tunes Of Dunes
 date: 2026-01-10T21:57:00.000+05:30
 category: Culture
 metaDescription: Join Desert Festival Jaisalmer 2026 with Tunes Of Dunes.
   Explore Maru Mahotsav 2026, cultural shows, desert camps & royal traditions.
 keywords: Desert Festival Jaisalmer 2026, Maru Mahotsav 2026
 thumbnail: ../assets/images/desert-festival.png
+thumbnailAlt: Desert Festival Jaisalmer
 ---
 # Desert Festival Jaisalmer
 
