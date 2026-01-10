@@ -108,6 +108,8 @@
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 
 <body>
@@ -326,11 +328,13 @@
                     behind the horizon.</p>
 
                 <h3>Luxury Camping & Cultural Evenings</h3>
-                <p>Put up with the best <strong>Luxury Desert Camps in Jaisalmer</strong> which are full of all the
-                    latest comforts and traditional hospitality. We will entertain you with colourful <strong>Rajasthani
-                        folk dance and music</strong>, fire shows, and a delicious buffet dinner under the starlit sky
-                    as part of our evening packages. We make sure that your stay in <strong>Jaisalmer</strong> is a
-                    memorable one.</p>
+                <p>Put up with the best <strong>Luxury Desert Camps in Jaisalmer</strong> that are full of all the
+                    modern comforts and traditional hospitality. As a part of our evening packages, the colourful
+                    <strong>Rajasthani folk dance and music</strong>, fire shows and a delicious <strong>buffet
+                        dinner</strong> under the starry sky will be some of the sources of your entertainment.
+                </p>
+
+                <p>We guarantee you a memorable time in Jaisalmer.</p>
 
                 <h3>Top Things to Do in Jaisalmer</h3>
                 <p>Our trips are not limited to just the sand dunes; we also take you to see all the other major
@@ -433,7 +437,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4>Tunes & Dunes</h4>
+                    <h4>Tunes of Dunes</h4>
                     <p>Making your Jaisalmer trip unforgettable with our premium services and warm hospitality.</p>
                 </div>
                 <div class="footer-col">
@@ -547,6 +551,17 @@
         </div>
     </div>
 
+    <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

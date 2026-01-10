@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} | Tunes of Dunes</title>
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    <meta name="keywords" content="{{KEYWORDS}}">
+    <link rel="canonical" href="https://tunesofdunes.netlify.app/html/blogs/{{SLUG}}.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tunesofdunes.netlify.app/html/blogs/{{SLUG}}.html">
+    <meta property="og:title" content="{{TITLE}} | Tunes of Dunes">
+    <meta property="og:description" content="{{META_DESCRIPTION}}">
+    <meta property="og:image" content="https://tunesofdunes.netlify.app/{{THUMBNAIL}}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../assets/images/tunes of dunes.png">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{{TITLE}}",
+      "image": "https://tunesofdunes.netlify.app/{{THUMBNAIL}}",
+      "author": {
+        "@type": "Organization",
+        "name": "Tunes of Dunes"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Tunes of Dunes",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://tunesofdunes.netlify.app/assets/images/tunes%20of%20dunes.png"
+        }
+      },
+      "datePublished": "{{DATE}}",
+      "dateModified": "{{DATE}}"
+    }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/package.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="mobile-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <a href="../../index.html" class="logo">
+                    <img src="../../assets/images/tunes of dunes.png" alt="Tunes of Dunes Logo" class="logo-img">
+                </a>
+                <div class="mobile-contact">
+                    <button id="contactModalTrigger" class="contact-trigger-btn" aria-label="Open Contact Info">
+                        <i class="fas fa-phone-alt"></i>
+                    </button>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../packages.html">Custom Packages</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../../index.html#services">Services</a></li>
+                    <li><a href="../../index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header" style="background-image: url('../../{{THUMBNAIL}}');">
+        <div class="container">
+            <span class="page-header-badge">Travel Guide</span>
+            <h1>{{TITLE}}</h1>
+            <p><i class="far fa-clock"></i> {{DATE}} &nbsp;|&nbsp; By {{AUTHOR}}</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section-padding">
+        <div class="container blog-container">
+            <div class="blog-content">
+                {{CONTENT}}
+            </div>
+
+            <!-- Sidebar -->
+            <div class="blog-sidebar">
+                <div class="sidebar-widget">
+                    <h3>Experience Jaisalmer</h3>
+                    <div class="related-package-card">
+                        <img src="../../assets/images/camel.png" alt="Jaisalmer Desert Safari">
+                        <div class="related-package-content">
+                            <h4>Ultimate Jaisalmer Combo</h4>
+                            <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">Camel Safari + Jeep Safari +
+                                Camping + Dinner</p>
+                            <button class="btn btn-primary btn-sm btn-book-combo"
+                                data-package="Ultimate Jaisalmer Combo" style="width: 100%;">Get Quotation</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Tunes of Dunes</h4>
+                    <p>Making your Jaisalmer trip unforgettable with our premium services and warm hospitality.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../packages.html">Custom Packages</a></li>
+                        <li><a href="../blog.html">Blog</a></li>
+                        <li><a href="../../index.html#services">Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> <a href="tel:+919079881992">+91 9079881992</a></li>
+                        <li><i class="fas fa-envelope"></i> <a
+                                href="mailto:info@tunesanddunes.com">info@tunesanddunes.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Fort Road, Jaisalmer</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Tunes Of Dunes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../../js/main.js"></script>
+    <!-- Standard Modals -->
+    <div class="contact-modal-overlay" id="contactModal">
+        <div class="contact-modal-content">
+            <button class="modal-close" id="contactModalClose">&times;</button>
+            <div class="modal-header">
+                <h3>TUNES OF DUNES</h3>
+                <p>Jaisalmer Luxury Tours</p>
+            </div>
+            <div class="modal-body">
+                <p class="modal-intro">Explore the Golden City with comfort and ease.</p>
+                <div class="contact-block">
+                    <h4>Phone</h4>
+                    <a href="tel:+919079881992" class="contact-link">+91 9079881992</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="contact-modal-overlay" id="bookingModal">
+        <div class="contact-modal">
+            <button class="modal-close" id="bookingModalClose"><i class="fas fa-times"></i></button>
+            <div class="modal-header-content">
+                <h3>Get a Quote</h3>
+                <p>Plan your perfect desert getaway</p>
+            </div>
+            <form class="contact-form" id="bookingForm">
+                <input type="hidden" id="bookingPackageName">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="bName" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="bPhone" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fab fa-whatsapp"></i> Get Quote on WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

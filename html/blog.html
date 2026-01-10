@@ -161,57 +161,45 @@
     <!-- Blog Grid Section -->
     <section class="section-padding blog-list">
         <div class="container">
-            <div class="tours-grid">
-                <!-- Blog Post 1 -->
-                <article class="tour-card">
-                    <div class="tour-image">
-                        <img src="../assets/images/slide3.png" alt="Best Time to Visit Jaisalmer">
-                    </div>
-                    <div class="tour-content">
-                        <div class="tour-meta">
-                            <span><i class="far fa-calendar"></i> Dec 15, 2025</span>
-                            <span><i class="fas fa-tag"></i> Travel Guide</span>
-                        </div>
-                        <h3>Best Time to Visit Jaisalmer</h3>
-                        <p>A complete guide on weather, seasons, and festivals to plan your perfect Jaisalmer trip.</p>
-                        <a href="blogs/best-time-to-visit.html" class="btn btn-primary btn-sm">Read More</a>
-                    </div>
-                </article>
-
-                <!-- Blog Post 2 -->
-                <article class="tour-card">
-                    <div class="tour-image">
-                        <img src="../assets/images/camel.png" alt="Camel Safari Guide">
-                    </div>
-                    <div class="tour-content">
-                        <div class="tour-meta">
-                            <span><i class="far fa-calendar"></i> Dec 16, 2025</span>
-                            <span><i class="fas fa-tag"></i> Adventure</span>
-                        </div>
-                        <h3>Ultimate Guide to Camel Safari</h3>
-                        <p>Everything you need to know about experiencing the Sam Sand Dunes on camelback.</p>
-                        <a href="blogs/camel-safari-guide.html" class="btn btn-outline btn-sm">Read More</a>
-                    </div>
-                </article>
-
-                <!-- Blog Post 3 -->
-                <article class="tour-card">
-                    <div class="tour-image">
-                        <img src="../assets/images/cultural.png" alt="Things to do in Jaisalmer">
-                    </div>
-                    <div class="tour-content">
-                        <div class="tour-meta">
-                            <span><i class="far fa-calendar"></i> Dec 20, 2025</span>
-                            <span><i class="fas fa-tag"></i> Culture</span>
-                        </div>
-                        <h3>Top 10 Things to Do in Jaisalmer</h3>
-                        <p>From fort walks to cultural evenings, discover the must-do activities in Jaisalmer.</p>
-                        <a href="blogs/top-things-to-do.html" class="btn btn-outline btn-sm">Read More</a>
-                    </div>
-                </article>
-            </div>
+            <!-- Dynamic Blog Posts will be injected here -->
+        </div>
         </div>
     </section>
+
+    <!-- Load Blog Data -->
+    <script src="../js/blog-posts-data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const blogGrid = document.querySelector('.blog-list .tours-grid');
+            if (!blogGrid) return;
+
+            // Clear static content (optional, in case there are placeholders)
+            blogGrid.innerHTML = '';
+
+            // blogPosts is globally available from the script above
+            if (typeof blogPosts !== 'undefined') {
+                blogPosts.forEach(post => {
+                    const article = document.createElement('article');
+                    article.className = 'tour-card';
+                    article.innerHTML = `
+                        <div class="tour-image">
+                            <img src="../${post.thumbnail}" alt="${post.title}">
+                        </div>
+                        <div class="tour-content">
+                            <div class="tour-meta">
+                                <span><i class="far fa-calendar"></i> ${post.date}</span>
+                                <span><i class="fas fa-tag"></i> ${post.category}</span>
+                            </div>
+                            <h3>${post.title}</h3>
+                            <p>${post.metaDescription}</p>
+                            <a href="blogs/${post.slug}.html" class="btn btn-primary btn-sm">Read More</a>
+                        </div>
+                    `;
+                    blogGrid.appendChild(article);
+                });
+            }
+        });
+    </script>
 
 
 
@@ -220,7 +208,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4>Tunes & Dunes</h4>
+                    <h4>Tunes of Dunes</h4>
                     <p>Making your Jaisalmer trip unforgettable with our premium services and warm hospitality.</p>
                 </div>
                 <div class="footer-col">
