@@ -1,0 +1,11 @@
+[build]
+  command = "npm install && npm run build"
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[headers]]
+  for = "/js/blog-posts-data.js"
+  [headers.values]
+    cache-control = "max-age=0, no-cache, no-store, must-revalidate"

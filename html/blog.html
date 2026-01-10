@@ -167,18 +167,14 @@
         </div>
     </section>
 
-    <!-- Load Blog Data -->
-    <script src="../js/blog-posts-data.js"></script>
+    <!-- Load Blog Data with Cache Busting -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        function renderBlogs() {
             const blogGrid = document.querySelector('.blog-list .tours-grid');
             if (!blogGrid) return;
 
-            // blogPosts is globally available from the script above
             if (typeof blogPosts !== 'undefined' && blogPosts.length > 0) {
-                // Clear placeholders
                 blogGrid.innerHTML = '';
-
                 blogPosts.forEach(post => {
                     const article = document.createElement('article');
                     article.className = 'tour-card';
@@ -201,7 +197,12 @@
             } else {
                 blogGrid.innerHTML = '<div style="text-align:center; padding: 40px; grid-column: 1/-1;"><p>No blog posts found. Check back soon!</p></div>';
             }
-        });
+        }
+
+        const script = document.createElement('script');
+        script.src = `../js/blog-posts-data.js?t=${new Date().getTime()}`;
+        script.onload = renderBlogs;
+        document.head.appendChild(script);
     </script>
 
 

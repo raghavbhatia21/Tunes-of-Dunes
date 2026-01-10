@@ -21,21 +21,29 @@ const sitemapUrls = [
     { loc: `${BASE_URL}/html/blog.html`, priority: '0.8', changefreq: 'weekly' }
 ];
 
+console.log(`Starting build from: ${CONTENT_DIR}`);
 const files = fs.readdirSync(CONTENT_DIR);
+console.log(`Found ${files.length} files in content directory.`);
 
 files.forEach(file => {
-    if (!file.endsWith('.md')) return;
+    if (!file.endsWith('.md')) {
+        console.log(`Skipping non-markdown file: ${file}`);
+        return;
+    }
 
     const filePath = path.join(CONTENT_DIR, file);
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContent);
     const slug = file.replace('.md', '');
 
+    console.log(`Processing blog: ${slug} (${data.title})`);
+
     // Meta data for JSON listing
     blogPosts.push({
         title: data.title,
         slug: slug,
         date: data.date ? new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '',
+        timestamp: data.date ? new Date(data.date).getTime() : 0, // For easier sorting
         metaDescription: data.metaDescription || '',
         thumbnail: data.thumbnail || 'assets/images/cultural.png',
         thumbnailAlt: data.thumbnailAlt || data.title,
@@ -67,7 +75,9 @@ files.forEach(file => {
 });
 
 // Update the listing data file
-const dataContent = `const blogPosts = ${JSON.stringify(blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date)), null, 2)};`;
+// Sort by timestamp descending
+const sortedPosts = blogPosts.sort((a, b) => b.timestamp - a.timestamp);
+const dataContent = `const blogPosts = ${JSON.stringify(sortedPosts, null, 2)};`;
 fs.writeFileSync(DATA_FILE, dataContent);
 
 // Update Sitemap
