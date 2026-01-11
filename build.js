@@ -25,6 +25,9 @@ console.log(`Starting build from: ${CONTENT_DIR}`);
 const files = fs.readdirSync(CONTENT_DIR);
 console.log(`Found ${files.length} files in content directory.`);
 
+// Get list of expected HTML files for cleanup
+const expectedHtmlFiles = new Set();
+
 files.forEach(file => {
     if (!file.endsWith('.md')) {
         console.log(`Skipping non-markdown file: ${file}`);
@@ -34,7 +37,10 @@ files.forEach(file => {
     const filePath = path.join(CONTENT_DIR, file);
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContent);
-    const slug = file.replace('.md', '');
+
+    // Use custom slug if provided, otherwise fallback to filename slug
+    const slug = data.slug || file.replace('.md', '');
+    expectedHtmlFiles.add(`${slug}.html`);
 
     console.log(`Processing blog: ${slug} (${data.title})`);
 
@@ -43,7 +49,7 @@ files.forEach(file => {
         title: data.title,
         slug: slug,
         date: data.date ? new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '',
-        timestamp: data.date ? new Date(data.date).getTime() : 0, // For easier sorting
+        timestamp: data.date ? new Date(data.date).getTime() : 0,
         metaDescription: data.metaDescription || '',
         thumbnail: data.thumbnail || 'assets/images/cultural.png',
         thumbnailAlt: data.thumbnailAlt || data.title,
@@ -55,7 +61,7 @@ files.forEach(file => {
         loc: `${BASE_URL}/html/blogs/${slug}.html`,
         priority: '0.7',
         changefreq: 'monthly',
-        lastmod: data.date || new Date().toISOString().split('T')[0]
+        lastmod: data.date ? new Date(data.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]
     });
 
     // Generate HTML for individual post
@@ -74,6 +80,15 @@ files.forEach(file => {
     fs.writeFileSync(path.join(OUTPUT_DIR, `${slug}.html`), finalHtml);
 });
 
+// Cleanup orphan HTML files
+const existingHtmlFiles = fs.readdirSync(OUTPUT_DIR);
+existingHtmlFiles.forEach(file => {
+    if (file.endsWith('.html') && !expectedHtmlFiles.has(file)) {
+        console.log(`Removing orphan blog file: ${file}`);
+        fs.unlinkSync(path.join(OUTPUT_DIR, file));
+    }
+});
+
 // Update the listing data file
 // Sort by timestamp descending
 const sortedPosts = blogPosts.sort((a, b) => b.timestamp - a.timestamp);
@@ -85,7 +100,7 @@ const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${sitemapUrls.map(url => `    <url>
         <loc>${url.loc}</loc>
-        ${url.lastmod ? `<lastmod>${url.lastmod}</lastmod>` : `<lastmod>${new Date().toISOString().split('T')[0]}</lastmod>`}
+        <lastmod>${url.lastmod || new Date().toISOString().split('T')[0]}</lastmod>
         <changefreq>${url.changefreq}</changefreq>
         <priority>${url.priority}</priority>
     </url>`).join('\n')}

@@ -1,5 +1,14 @@
 const blogPosts = [
     {
+        "title": "Desert Festival Jaisalmer 2026",
+        "slug": "desert-festival-jaisalmer-2026",
+        "date": "Jan 10, 2026",
+        "metaDescription": "Experience Desert Festival Jaisalmer 2026 (Maru Mahotsav 2026) with Tunes Of Dunes. Enjoy culture, camel events, folk music & desert safari.",
+        "thumbnail": "assets/images/desert-festival.png",
+        "thumbnailAlt": "Desert Festival Jaisalmer",
+        "category": "Culture"
+    },
+    {
         "title": "Best Time to Visit Jaisalmer",
         "slug": "best-time-to-visit",
         "date": "Dec 15, 2025",

@@ -36,4 +36,16 @@
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
+    <url>
+        <loc>https://tunesofdunes.netlify.app/html/blogs/desert-festival-jaisalmer-2026-maru-mahotsav-2026-–-tunes-of-dunes.html</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://tunesofdunes.netlify.app/html/blogs/desert-festival-jaisalmer-2026.html</loc>
+        <lastmod>2026-01-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
 </urlset>

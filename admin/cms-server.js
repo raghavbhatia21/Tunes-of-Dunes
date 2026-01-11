@@ -33,7 +33,7 @@ const server = http.createServer((req, res) => {
 });
 
 function publishBlog(data, res) {
-    const { title, slug, metaDescription, keywords, content, thumbnail, category, author, date } = data;
+    const { title, slug, metaDescription, keywords, content, thumbnail, thumbnailAlt, category, author, date } = data;
 
     // 1. Load Template
     const templatePath = path.join(__dirname, 'blog-template.html');
@@ -46,6 +46,7 @@ function publishBlog(data, res) {
         .replace(/{{KEYWORDS}}/g, keywords)
         .replace(/{{CONTENT}}/g, content)
         .replace(/{{THUMBNAIL}}/g, thumbnail || '../../assets/images/cultural.png')
+        .replace(/{{THUMBNAIL_ALT}}/g, thumbnailAlt || title)
         .replace(/{{DATE}}/g, date)
         .replace(/{{AUTHOR}}/g, author || 'Tunes of Dunes')
         .replace(/{{SLUG}}/g, slug);
