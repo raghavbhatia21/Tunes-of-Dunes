@@ -12,11 +12,8 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Title (H1)", name: "title", widget: "string" }
-      - { label: "URL Slug", name: "slug", widget: "string", hint: "The part of the URL after /blogs/ (e.g., camel-safari-guide)" }
-      - { label: "SEO Title", name: "seoTitle", widget: "string", required: false, hint: "Optimized title for search engines. Defaults to Title + Brand Name." }
+      - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Author", name: "author", widget: "string", default: "Tunes of Dunes" }
       - { label: "Category", name: "category", widget: "select", options: ["Travel Guide", "Adventure", "Culture", "Tips & Tricks"] }
       - { label: "Meta Description", name: "metaDescription", widget: "text" }
       - { label: "Keywords", name: "keywords", widget: "string", required: false }

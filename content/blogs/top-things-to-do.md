@@ -1,11 +1,8 @@
 ---
 title: "Top 10 Things to Do in Jaisalmer"
-slug: "top-things-to-do"
-seoTitle: "10 Best Things to Do in Jaisalmer: Sightseeing & Adventures | Tunes of Dunes"
 date: "2025-09-28"
-author: "Tunes of Dunes"
-metaDescription: "From the Golden Fort to ghost villages, discover the top 10 things to do in Jaisalmer for an unforgettable Rajasthan trip. Jaisalmer sightseeing guide."
-keywords: "Top 10 Things to Do in Jaisalmer, Jaisalmer Sightseeing, Jaisalmer Fort, Kuldhara Village, Gadisar Lake, Jaisalmer Tourism"
+metaDescription: "From the Golden Fort to ghost villages, discover the top 10 things to do in Jaisalmer for an unforgettable Rajasthan trip."
+keywords: "Things to do in Jaisalmer, Jaisalmer Attractions, Jaisalmer Fort, Kuldhara Village, Gadisar Lake, Patwon Ki Haveli"
 thumbnail: "assets/images/cultural.png"
 thumbnailAlt: "Architectural detail of a haveli in Jaisalmer"
 category: "Culture"

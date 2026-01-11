@@ -34,12 +34,9 @@ files.forEach(file => {
     const filePath = path.join(CONTENT_DIR, file);
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContent);
-    const slug = data.slug || file.replace('.md', '');
+    const slug = file.replace('.md', '');
 
     console.log(`Processing blog: ${slug} (${data.title})`);
-
-    const seoTitle = data.seoTitle || `${data.title} | Tunes of Dunes`;
-    const author = data.author || 'Tunes of Dunes';
 
     // Meta data for JSON listing
     blogPosts.push({
@@ -50,8 +47,7 @@ files.forEach(file => {
         metaDescription: data.metaDescription || '',
         thumbnail: data.thumbnail || 'assets/images/cultural.png',
         thumbnailAlt: data.thumbnailAlt || data.title,
-        category: data.category || 'Travel Guide',
-        author: author
+        category: data.category || 'Travel Guide'
     });
 
     // Add to sitemap
@@ -66,14 +62,13 @@ files.forEach(file => {
     const htmlBody = marked(content);
     const finalHtml = template
         .replace(/{{TITLE}}/g, data.title)
-        .replace(/{{SEO_TITLE}}/g, seoTitle)
         .replace(/{{META_DESCRIPTION}}/g, data.metaDescription || '')
         .replace(/{{KEYWORDS}}/g, data.keywords || '')
         .replace(/{{CONTENT}}/g, htmlBody)
         .replace(/{{THUMBNAIL}}/g, data.thumbnail || 'assets/images/cultural.png')
         .replace(/{{THUMBNAIL_ALT}}/g, data.thumbnailAlt || data.title)
         .replace(/{{DATE}}/g, data.date ? new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '')
-        .replace(/{{AUTHOR}}/g, author)
+        .replace(/{{AUTHOR}}/g, 'Tunes of Dunes')
         .replace(/{{SLUG}}/g, slug);
 
     fs.writeFileSync(path.join(OUTPUT_DIR, `${slug}.html`), finalHtml);
