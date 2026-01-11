@@ -1,6 +1,6 @@
 ---
 title: Ultimate Guide to Camel Safari in Jaisalmer
-slug: Camel Safari in Jaisalmer
+slug: camel-safari-in-jaisalmer
 date: 2025-11-02
 category: Adventure
 metaDescription: Everything you need to know about experiencing the Sam Sand
