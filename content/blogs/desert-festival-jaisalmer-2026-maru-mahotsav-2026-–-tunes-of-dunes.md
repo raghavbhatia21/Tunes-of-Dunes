@@ -1,5 +1,5 @@
 ---
-title: Desert Festival Jaisalmer 2026 | Maru Mahotsav 2026
+title: Desert Festival Jaisalmer 2026
 date: 2026-01-10T23:25:00.000+05:30
 category: Culture
 metaDescription: Experience Desert Festival Jaisalmer 2026 (Maru Mahotsav 2026)
