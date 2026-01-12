@@ -225,35 +225,47 @@
         </div>
     </section>
 
-    <!-- Features Section (Replaces About) -->
-    <section id="features" class="section-padding features">
+    <!-- Taxi Booking Section -->
+    <section id="taxi" class="section-padding taxi-booking">
         <div class="container">
-            <div class="features-grid">
-                <!-- Feature 1 -->
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-hand-holding-usd"></i>
+            <div class="taxi-flex">
+                <div class="taxi-content">
+                    <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+                        <h2>Book Your Taxi</h2>
+                        <p>Reliable and comfortable intercity transfers across Major Indian Cities</p>
                     </div>
-                    <h3>Competitive Pricing</h3>
-                    <p>Experience luxury without the premium price tag. Best value guaranteed.</p>
+                    <form id="taxiBookingForm" class="taxi-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="taxiFrom">From</label>
+                                <input type="text" id="taxiFrom" placeholder="Departure City (e.g. Jaisalmer)" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="taxiTo">To</label>
+                                <input type="text" id="taxiTo" placeholder="Destination City (e.g. Jodhpur)" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="taxiName">Booking Name</label>
+                            <input type="text" id="taxiName" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="taxiPeople">No. of People</label>
+                                <input type="number" id="taxiPeople" min="1" value="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="taxiDate">Arrival Date</label>
+                                <input type="date" id="taxiDate" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fab fa-whatsapp"></i> Book via WhatsApp
+                        </button>
+                    </form>
                 </div>
-
-                <!-- Feature 2 -->
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-map-marked-alt"></i>
-                    </div>
-                    <h3>Wide Coverage</h3>
-                    <p>From the Golden Fort to the deep Sam Dunes, we cover every inch of Jaisalmer.</p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <h3>Fast Booking</h3>
-                    <p>Instant confirmation and seamless support for a hassle-free journey.</p>
+                <div class="taxi-image">
+                    <img src="assets/images/taxi.png" alt="Premium Taxi Service Jaisalmer">
                 </div>
             </div>
         </div>

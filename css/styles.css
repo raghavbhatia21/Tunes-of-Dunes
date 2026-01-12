@@ -396,64 +396,80 @@ nav {
     }
 }
 
-/* Features Section */
-.features {
+/* Taxi Booking Section */
+.taxi-booking {
     background-color: var(--color-bg-white);
 }
 
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-lg);
-    text-align: center;
-}
-
-.feature-item {
-    padding: 2rem;
-    background: #fff;
-    border-radius: 20px;
-    transition: var(--transition-smooth);
-    border: 1px solid transparent;
-}
-
-.feature-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
-    border-color: #f0f0f0;
-}
-
-.feature-icon {
-    font-size: 3rem;
-    color: var(--color-primary);
-    margin-bottom: 1.5rem;
-    display: inline-flex;
+.taxi-flex {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: rgba(197, 160, 89, 0.1);
-    /* Pale gold bg */
+    gap: var(--spacing-xl);
+}
+
+.taxi-content {
+    flex: 1;
+}
+
+.taxi-image {
+    flex: 1;
+}
+
+.taxi-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+}
+
+.taxi-form {
+    background: #fff;
+}
+
+.taxi-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.taxi-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-text-dark);
+}
+
+.taxi-form input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
     transition: var(--transition-smooth);
 }
 
-.feature-item:hover .feature-icon {
-    background: var(--color-primary);
-    color: #fff;
-    transform: rotateY(180deg);
+.taxi-form input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
 }
 
-.feature-item h3 {
-    font-size: 1.4rem;
-    color: var(--color-text-dark);
-    margin-bottom: 0.8rem;
-    font-weight: 700;
+.btn-block {
+    width: 100%;
 }
 
-.feature-item p {
-    color: var(--color-text-gray);
-    font-size: 1rem;
-    line-height: 1.6;
+@media (max-width: 1024px) {
+    .taxi-flex {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .taxi-image {
+        order: -1;
+    }
+
+    .taxi-content {
+        width: 100%;
+    }
 }
 
 /* Tours Section */

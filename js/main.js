@@ -657,4 +657,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // --- TAXI BOOKING FORM LOGIC ---
+    const taxiBookingForm = document.getElementById('taxiBookingForm');
+    if (taxiBookingForm) {
+        taxiBookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const from = document.getElementById('taxiFrom').value;
+            const to = document.getElementById('taxiTo').value;
+            const name = document.getElementById('taxiName').value;
+            const people = document.getElementById('taxiPeople').value;
+            const date = document.getElementById('taxiDate').value;
+
+            const message = `*Taxi Booking Inquiry*\n\n*Name:* ${name}\n*From:* ${from}\n*To:* ${to}\n*No. of People:* ${people}\n*Arrival Date:* ${date}\n\nPlease provide me with the taxi rates and availability.`;
+
+            const whatsappUrl = `https://wa.me/919079881992?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        });
+    }
 });
