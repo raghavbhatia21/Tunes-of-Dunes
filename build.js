@@ -18,6 +18,7 @@ const blogPosts = [];
 const sitemapUrls = [
     { loc: `${BASE_URL}/`, priority: '1.0', changefreq: 'daily' },
     { loc: `${BASE_URL}/html/packages.html`, priority: '0.9', changefreq: 'weekly' },
+    { loc: `${BASE_URL}/html/hotels.html`, priority: '0.9', changefreq: 'weekly' },
     { loc: `${BASE_URL}/html/blog.html`, priority: '0.8', changefreq: 'weekly' }
 ];
 
@@ -44,12 +45,32 @@ files.forEach(file => {
 
     console.log(`Processing blog: ${slug} (${data.title})`);
 
+    // Date parsing with robustness
+    let postDate = '';
+    let timestamp = 0;
+    let isoDate = new Date().toISOString().split('T')[0];
+
+    if (data.date) {
+        try {
+            const d = new Date(data.date);
+            if (!isNaN(d.getTime())) {
+                postDate = d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+                timestamp = d.getTime();
+                isoDate = d.toISOString().split('T')[0];
+            } else {
+                console.warn(`Warning: Invalid date format in ${file}: ${data.date}`);
+            }
+        } catch (e) {
+            console.error(`Error parsing date in ${file}:`, e);
+        }
+    }
+
     // Meta data for JSON listing
     blogPosts.push({
         title: data.title,
         slug: slug,
-        date: data.date ? new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '',
-        timestamp: data.date ? new Date(data.date).getTime() : 0,
+        date: postDate,
+        timestamp: timestamp,
         metaDescription: data.metaDescription || '',
         thumbnail: data.thumbnail || 'assets/images/cultural.png',
         thumbnailAlt: data.thumbnailAlt || data.title,
@@ -61,7 +82,7 @@ files.forEach(file => {
         loc: `${BASE_URL}/html/blogs/${slug}.html`,
         priority: '0.7',
         changefreq: 'monthly',
-        lastmod: data.date ? new Date(data.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]
+        lastmod: isoDate
     });
 
     // Generate HTML for individual post
@@ -73,7 +94,7 @@ files.forEach(file => {
         .replace(/{{CONTENT}}/g, htmlBody)
         .replace(/{{THUMBNAIL}}/g, data.thumbnail || 'assets/images/cultural.png')
         .replace(/{{THUMBNAIL_ALT}}/g, data.thumbnailAlt || data.title)
-        .replace(/{{DATE}}/g, data.date ? new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '')
+        .replace(/{{DATE}}/g, postDate)
         .replace(/{{AUTHOR}}/g, 'Tunes of Dunes')
         .replace(/{{SLUG}}/g, slug);
 
@@ -90,7 +111,6 @@ existingHtmlFiles.forEach(file => {
 });
 
 // Update the listing data file
-// Sort by timestamp descending
 const sortedPosts = blogPosts.sort((a, b) => b.timestamp - a.timestamp);
 const dataContent = `const blogPosts = ${JSON.stringify(sortedPosts, null, 2)};`;
 fs.writeFileSync(DATA_FILE, dataContent);
@@ -107,4 +127,4 @@ ${sitemapUrls.map(url => `    <url>
 </urlset>`;
 fs.writeFileSync(SITEMAP_FILE, sitemapContent);
 
-console.log(`Build complete! Generated ${blogPosts.length} blog posts and updated sitemap.`);
+console.log(`Build complete! Generated ${blogPosts.length} blog posts and updated sitemap with ${sitemapUrls.length} links.`);

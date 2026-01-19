@@ -57,13 +57,21 @@ function publishBlog(data, res) {
 
     // 4. Update Metadata File
     const dataPath = path.join(__dirname, '..', 'js', 'blog-posts-data.js');
+    console.log(`Updating metadata file: ${dataPath}`);
     let posts = [];
     if (fs.existsSync(dataPath)) {
         const fileContent = fs.readFileSync(dataPath, 'utf8');
-        // Extract JSON from const blogPosts = [...];
-        const match = fileContent.match(/const blogPosts = (\[.*\]);/s);
+        // Extract JSON from const blogPosts = [...]; (semicolon is optional)
+        const match = fileContent.match(/const blogPosts = (\[.*\]);?/s);
         if (match) {
-            posts = JSON.parse(match[1]);
+            try {
+                posts = JSON.parse(match[1]);
+                console.log(`Loaded ${posts.length} existing posts.`);
+            } catch (err) {
+                console.error('Error parsing blog-posts-data.js:', err);
+            }
+        } else {
+            console.warn('Could not find blogPosts array in blog-posts-data.js');
         }
     }
 
@@ -80,14 +88,18 @@ function publishBlog(data, res) {
 
     if (existingIndex > -1) {
         posts[existingIndex] = newPost;
+        console.log(`Updated existing post: ${slug}`);
     } else {
         posts.unshift(newPost); // Add to beginning
+        console.log(`Added new post: ${slug}`);
     }
 
     const updatedData = `const blogPosts = ${JSON.stringify(posts, null, 4)};`;
     fs.writeFileSync(dataPath, updatedData);
+    console.log('Metadata file updated successfully.');
 
     // 5. Update Sitemap
+    console.log('Updating sitemap...');
     const BASE_URL = 'https://tunesofdunes.com';
     const sitemapPath = path.join(__dirname, '..', 'sitemap.xml');
     const sitemapUrls = [
@@ -98,11 +110,22 @@ function publishBlog(data, res) {
 
     // Add all posts to sitemap
     posts.forEach(post => {
+        let lastmod = new Date().toISOString().split('T')[0];
+        if (post.date) {
+            try {
+                const d = new Date(post.date);
+                if (!isNaN(d.getTime())) {
+                    lastmod = d.toISOString().split('T')[0];
+                }
+            } catch (e) {
+                console.warn(`Invalid date for post ${post.slug}: ${post.date}`);
+            }
+        }
         sitemapUrls.push({
             loc: `${BASE_URL}/html/blogs/${post.slug}.html`,
             priority: '0.7',
             changefreq: 'monthly',
-            lastmod: post.date ? new Date(post.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]
+            lastmod: lastmod
         });
     });
 
@@ -116,6 +139,7 @@ ${sitemapUrls.map(url => `    <url>
     </url>`).join('\n')}
 </urlset>`;
     fs.writeFileSync(sitemapPath, sitemapContent);
+    console.log(`Sitemap updated successfully with ${sitemapUrls.length} entries.`);
 
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ success: true, path: `html/blogs/${slug}.html` }));
@@ -124,4 +148,32 @@ ${sitemapUrls.map(url => `    <url>
 server.listen(PORT, () => {
     console.log(`CMS Server running at http://localhost:${PORT}`);
     console.log('Press Ctrl+C to stop.');
+
+    // Add File Watcher to trigger build.js automatically
+    const contentDir = path.join(__dirname, '..', 'content', 'blogs');
+    const buildScript = path.join(__dirname, '..', 'build.js');
+
+    if (fs.existsSync(contentDir)) {
+        console.log(`Watching for changes in: ${contentDir}`);
+        let timeout;
+        fs.watch(contentDir, (eventType, filename) => {
+            if (filename) {
+                // Debounce build to avoid running multiple times for a single save
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    console.log(`Change detected in ${filename}. Running build...`);
+                    // Use require to run the script instead of exec to avoid dependency on global 'node'
+                    try {
+                        delete require.cache[require.resolve(buildScript)];
+                        require(buildScript);
+                        console.log('Build completed successfully.');
+                    } catch (err) {
+                        console.error('Error running build script:', err);
+                    }
+                }, 1000);
+            }
+        });
+    } else {
+        console.warn(`Content directory not found for watching: ${contentDir}`);
+    }
 });
