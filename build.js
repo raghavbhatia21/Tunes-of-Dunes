@@ -125,6 +125,13 @@ ${sitemapUrls.map(url => `    <url>
         <priority>${url.priority}</priority>
     </url>`).join('\n')}
 </urlset>`;
+console.log('--- Sitemap Preview ---');
+console.log(sitemapContent.substring(0, 500) + '...');
 fs.writeFileSync(SITEMAP_FILE, sitemapContent);
+console.log(`Sitemap written to: ${SITEMAP_FILE}`);
+if (fs.existsSync(SITEMAP_FILE)) {
+    const stats = fs.statSync(SITEMAP_FILE);
+    console.log(`Verified sitemap existence. Size: ${stats.size} bytes. Modified: ${stats.mtime}`);
+}
 
 console.log(`Build complete! Generated ${blogPosts.length} blog posts and updated sitemap with ${sitemapUrls.length} links.`);
