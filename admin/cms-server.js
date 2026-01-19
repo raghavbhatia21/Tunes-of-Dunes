@@ -87,6 +87,36 @@ function publishBlog(data, res) {
     const updatedData = `const blogPosts = ${JSON.stringify(posts, null, 4)};`;
     fs.writeFileSync(dataPath, updatedData);
 
+    // 5. Update Sitemap
+    const BASE_URL = 'https://tunesofdunes.com';
+    const sitemapPath = path.join(__dirname, '..', 'sitemap.xml');
+    const sitemapUrls = [
+        { loc: `${BASE_URL}/`, priority: '1.0', changefreq: 'daily' },
+        { loc: `${BASE_URL}/html/packages.html`, priority: '0.9', changefreq: 'weekly' },
+        { loc: `${BASE_URL}/html/blog.html`, priority: '0.8', changefreq: 'weekly' }
+    ];
+
+    // Add all posts to sitemap
+    posts.forEach(post => {
+        sitemapUrls.push({
+            loc: `${BASE_URL}/html/blogs/${post.slug}.html`,
+            priority: '0.7',
+            changefreq: 'monthly',
+            lastmod: post.date ? new Date(post.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]
+        });
+    });
+
+    const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapUrls.map(url => `    <url>
+        <loc>${url.loc}</loc>
+        <lastmod>${url.lastmod}</lastmod>
+        <changefreq>${url.changefreq}</changefreq>
+        <priority>${url.priority}</priority>
+    </url>`).join('\n')}
+</urlset>`;
+    fs.writeFileSync(sitemapPath, sitemapContent);
+
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ success: true, path: `html/blogs/${slug}.html` }));
 }
