@@ -8,7 +8,7 @@ const TEMPLATE_PATH = path.join(__dirname, 'admin', 'blog-template.html');
 const OUTPUT_DIR = path.join(__dirname, 'html', 'blogs');
 const DATA_FILE = path.join(__dirname, 'js', 'blog-posts-data.js');
 const SITEMAP_FILE = path.join(__dirname, 'sitemap.xml');
-const BASE_URL = 'https://tunesofdunes.netlify.app';
+const BASE_URL = 'https://tunesofdunes.com';
 
 // Ensure output directory exists
 if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
