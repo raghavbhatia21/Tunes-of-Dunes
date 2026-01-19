@@ -30,7 +30,7 @@ The interiors of Patwon ki Haveli are no less spectacular. One can come across g
 
 ## Why Patwon ki Haveli Is Famous
 
-Patwon ki Haveli is essentially distinguished by the immense hard work and intricate detailing that were the components of the construction
+Patwon ki Haveli is essentially distinguished by the immense hard work and intricate detailing that were the components of the construction.
 
 When you move around the complex, you can definitely feel that a mere residential space couldn't have been the source of the same but rather a display of wealth and pride. The blend of Rajputana regal with sleek Mughal overlays is what makes it the most magnificent haveli in Jaisalmer.
 
