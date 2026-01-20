@@ -116,11 +116,21 @@ const dataContent = `const blogPosts = ${JSON.stringify(sortedPosts, null, 2)};`
 fs.writeFileSync(DATA_FILE, dataContent);
 
 // Update Sitemap
+// Use the newest blog post date for the home page lastmod, otherwise use today
+const newestPostDate = sortedPosts.length > 0 ? sortedPosts[0].date : null;
+let homeLastmod = new Date().toISOString().split('T')[0];
+if (newestPostDate) {
+    try {
+        const d = new Date(newestPostDate);
+        if (!isNaN(d.getTime())) homeLastmod = d.toISOString().split('T')[0];
+    } catch (e) { }
+}
+
 const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${sitemapUrls.map(url => `    <url>
         <loc>${url.loc}</loc>
-        <lastmod>${url.lastmod || new Date().toISOString().split('T')[0]}</lastmod>
+        <lastmod>${url.loc === `${BASE_URL}/` ? homeLastmod : (url.lastmod || new Date().toISOString().split('T')[0])}</lastmod>
         <changefreq>${url.changefreq}</changefreq>
         <priority>${url.priority}</priority>
     </url>`).join('\n')}
