@@ -1,11 +1,26 @@
 [build]
   command = "npm install && npm run build"
   publish = "."
+  # Ensure builds trigger on content changes
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF . ':(exclude)README.md'"
 
 [build.environment]
   NODE_VERSION = "20"
 
+# Cache headers for dynamic content
 [[headers]]
   for = "/js/blog-posts-data.js"
   [headers.values]
     cache-control = "max-age=0, no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    cache-control = "max-age=3600, must-revalidate"
+    content-type = "application/xml"
+
+# Redirect rules for SEO
+[[redirects]]
+  from = "/sitemap"
+  to = "/sitemap.xml"
+  status = 301

@@ -1,6 +1,6 @@
 ---
 title: Best Time to Visit Jaisalmer
-date: 2025-12-15
+date: 2026-01-15
 category: Travel Guide
 metaDescription: A complete guide on weather, seasons, and festivals to plan
   your perfect Jaisalmer trip.

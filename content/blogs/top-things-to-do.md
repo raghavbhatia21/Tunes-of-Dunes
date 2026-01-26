@@ -1,6 +1,6 @@
 ---
 title: "Top 10 Things to Do in Jaisalmer"
-date: "2025-09-28"
+date: "2026-01-11"
 metaDescription: "From the Golden Fort to ghost villages, discover the top 10 things to do in Jaisalmer for an unforgettable Rajasthan trip."
 keywords: "Things to do in Jaisalmer, Jaisalmer Attractions, Jaisalmer Fort, Kuldhara Village, Gadisar Lake, Patwon Ki Haveli"
 thumbnail: "assets/images/cultural.png"

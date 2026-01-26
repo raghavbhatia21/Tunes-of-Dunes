@@ -1,6 +1,6 @@
 ---
 title: "Ultimate Guide to Camel Safari in Jaisalmer"
-date: "2025-11-02"
+date: "2026-01-12"
 metaDescription: "Everything you need to know about experiencing the Sam Sand Dunes on camelback. Tips for sunset and sunrise safaris in Jaisalmer."
 keywords: "Camel Safari Jaisalmer, Desert Safari Tips, Sam Sand Dunes, Jaisalmer Camel Ride, Best Camel Safari"
 thumbnail: "assets/images/camel.png"

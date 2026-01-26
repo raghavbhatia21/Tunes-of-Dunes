@@ -4,7 +4,8 @@
   "description": "Tunes of Dunes Blog Build System",
   "main": "build.js",
   "scripts": {
-    "build": "node build.js"
+    "build": "node build.js",
+    "update-sitemap": "node update-sitemap.js"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
