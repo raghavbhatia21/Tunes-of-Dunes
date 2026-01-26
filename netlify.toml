@@ -19,6 +19,9 @@
     cache-control = "max-age=3600, must-revalidate"
     content-type = "application/xml"
 
+[[plugins]]
+package = "@netlify/plugin-sitemap"
+
 # Redirect rules for SEO
 [[redirects]]
   from = "/sitemap"

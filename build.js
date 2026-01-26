@@ -7,7 +7,6 @@ const CONTENT_DIR = path.join(__dirname, 'content', 'blogs');
 const TEMPLATE_PATH = path.join(__dirname, 'admin', 'blog-template.html');
 const OUTPUT_DIR = path.join(__dirname, 'html', 'blogs');
 const DATA_FILE = path.join(__dirname, 'js', 'blog-posts-data.js');
-const SITEMAP_FILE = path.join(__dirname, 'sitemap.xml');
 const BASE_URL = 'https://tunesofdunes.com';
 
 // Ensure output directory exists
@@ -15,12 +14,6 @@ if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
 const template = fs.readFileSync(TEMPLATE_PATH, 'utf8');
 const blogPosts = [];
-const sitemapUrls = [
-    { loc: `${BASE_URL}/`, priority: '1.0', changefreq: 'daily' },
-    { loc: `${BASE_URL}/html/packages.html`, priority: '0.9', changefreq: 'weekly' },
-    { loc: `${BASE_URL}/html/hotels.html`, priority: '0.9', changefreq: 'weekly' },
-    { loc: `${BASE_URL}/html/blog.html`, priority: '0.8', changefreq: 'weekly' }
-];
 
 console.log(`Starting build from: ${CONTENT_DIR}`);
 const files = fs.readdirSync(CONTENT_DIR);
@@ -77,14 +70,6 @@ files.forEach(file => {
         category: data.category || 'Travel Guide'
     });
 
-    // Add to sitemap
-    sitemapUrls.push({
-        loc: `${BASE_URL}/html/blogs/${slug}.html`,
-        priority: '0.7',
-        changefreq: 'monthly',
-        lastmod: isoDate
-    });
-
     // Generate HTML for individual post
     const htmlBody = marked(content);
     const finalHtml = template
@@ -115,33 +100,5 @@ const sortedPosts = blogPosts.sort((a, b) => b.timestamp - a.timestamp);
 const dataContent = `const blogPosts = ${JSON.stringify(sortedPosts, null, 2)};`;
 fs.writeFileSync(DATA_FILE, dataContent);
 
-// Update Sitemap
-// Use the newest blog post date for the home page lastmod, otherwise use today
-const newestPostDate = sortedPosts.length > 0 ? sortedPosts[0].date : null;
-let homeLastmod = new Date().toISOString().split('T')[0];
-if (newestPostDate) {
-    try {
-        const d = new Date(newestPostDate);
-        if (!isNaN(d.getTime())) homeLastmod = d.toISOString().split('T')[0];
-    } catch (e) { }
-}
 
-const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapUrls.map(url => `    <url>
-        <loc>${url.loc}</loc>
-        <lastmod>${url.loc === `${BASE_URL}/` ? homeLastmod : (url.lastmod || new Date().toISOString().split('T')[0])}</lastmod>
-        <changefreq>${url.changefreq}</changefreq>
-        <priority>${url.priority}</priority>
-    </url>`).join('\n')}
-</urlset>`;
-console.log('--- Sitemap Preview ---');
-console.log(sitemapContent.substring(0, 500) + '...');
-fs.writeFileSync(SITEMAP_FILE, sitemapContent);
-console.log(`Sitemap written to: ${SITEMAP_FILE}`);
-if (fs.existsSync(SITEMAP_FILE)) {
-    const stats = fs.statSync(SITEMAP_FILE);
-    console.log(`Verified sitemap existence. Size: ${stats.size} bytes. Modified: ${stats.mtime}`);
-}
-
-console.log(`Build complete! Generated ${blogPosts.length} blog posts and updated sitemap with ${sitemapUrls.length} links.`);
+console.log(`Build complete! Generated ${blogPosts.length} blog posts and updated listing data.`);
