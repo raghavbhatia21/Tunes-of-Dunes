@@ -432,6 +432,40 @@
             </div>
         </div>
     </div>
+    <!-- Booking/Quotation Modal -->
+    <div class="contact-modal-overlay" id="bookingModal">
+        <div class="contact-modal">
+            <button class="modal-close" id="bookingModalClose"><i class="fas fa-times"></i></button>
+            <div class="modal-header-content">
+                <h3>Get a Quote</h3>
+                <p>Plan your perfect desert getaway</p>
+            </div>
+            <form class="contact-form" id="bookingForm">
+                <input type="hidden" id="bookingPackageName">
+                <div class="form-group">
+                    <label for="bName">Your Name</label>
+                    <input type="text" id="bName" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="bPhone">Phone Number</label>
+                    <input type="tel" id="bPhone" required placeholder="+91 98765 43210">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bDate">Arrival Date</label>
+                        <input type="date" id="bDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bGuests">Guests</label>
+                        <input type="number" id="bGuests" min="1" value="2" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fab fa-whatsapp"></i> Get Quote on WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

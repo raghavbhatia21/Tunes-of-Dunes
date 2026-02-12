@@ -19,8 +19,14 @@ console.log(`Starting build from: ${CONTENT_DIR}`);
 const files = fs.readdirSync(CONTENT_DIR);
 console.log(`Found ${files.length} files in content directory.`);
 
-// Get list of expected HTML files for cleanup
+// Get list of expected HTML files for cleanup and sitemap
 const expectedHtmlFiles = new Set();
+const sitemapUrls = [
+    '',
+    '/html/packages.html',
+    '/html/blog.html',
+    '/html/hotels.html'
+];
 
 files.forEach(file => {
     if (!file.endsWith('.md')) {
@@ -35,6 +41,7 @@ files.forEach(file => {
     // Use custom slug if provided, otherwise fallback to filename slug
     const slug = data.slug || file.replace('.md', '');
     expectedHtmlFiles.add(`${slug}.html`);
+    sitemapUrls.push(`/html/blogs/${slug}.html`);
 
     console.log(`Processing blog: ${slug} (${data.title})`);
 
@@ -100,5 +107,22 @@ const sortedPosts = blogPosts.sort((a, b) => b.timestamp - a.timestamp);
 const dataContent = `const blogPosts = ${JSON.stringify(sortedPosts, null, 2)};`;
 fs.writeFileSync(DATA_FILE, dataContent);
 
+// Generate Sitemap
+function generateSitemap(urls) {
+    const today = new Date().toISOString().split('T')[0];
+    const urlSet = urls.map(url => `
+  <url>
+    <loc>${BASE_URL}${url}</loc>
+    <lastmod>${today}</lastmod>
+  </url>`).join('');
 
-console.log(`Build complete! Generated ${blogPosts.length} blog posts and updated listing data.`);
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urlSet}
+</urlset>`;
+}
+
+const sitemapContent = generateSitemap(sitemapUrls);
+fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemapContent);
+
+console.log(`Build complete! Generated ${blogPosts.length} blog posts, updated listing data, and generated sitemap.xml.`);
