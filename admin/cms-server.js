@@ -35,11 +35,47 @@ const server = http.createServer((req, res) => {
             const data = JSON.parse(body);
             publishBlog(data, res);
         });
+    } else if (req.method === 'POST' && req.url === '/delete') {
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk.toString();
+        });
+        req.on('end', () => {
+            const data = JSON.parse(body);
+            deleteBlog(data, res);
+        });
     } else {
         res.writeHead(404);
         res.end('Not Found');
     }
 });
+
+function deleteBlog(data, res) {
+    const { slug } = data;
+    if (!slug) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: false, error: 'Slug is required' }));
+        return;
+    }
+
+    const mdPath = path.join(__dirname, '..', 'content', 'blogs', `${slug}.md`);
+    const htmlPath = path.join(__dirname, '..', 'html', 'blogs', `${slug}.html`);
+
+    if (fs.existsSync(mdPath)) fs.unlinkSync(mdPath);
+    if (fs.existsSync(htmlPath)) fs.unlinkSync(htmlPath);
+
+    // Re-run build script to update sitemap and blog listing data
+    const buildScript = path.join(__dirname, '..', 'build.js');
+    try {
+        delete require.cache[require.resolve(buildScript)];
+        require(buildScript);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true, message: `Blog ${slug} deleted and sitemap updated.` }));
+    } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: false, error: err.message }));
+    }
+}
 
 function publishBlog(data, res) {
     const { title, slug, metaDescription, keywords, content, thumbnail, thumbnailAlt, category, author, date } = data;
