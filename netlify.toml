@@ -34,3 +34,14 @@ package = "@netlify/plugin-sitemap"
   to = "/sitemap.xml"
   status = 301
 
+[[redirects]]
+  from = "/favicon.ico"
+  to = "/assets/images/tunes-of-dunes.png"
+  status = 301
+
+[[redirects]]
+  from = "/favicon.png"
+  to = "/assets/images/tunes-of-dunes.png"
+  status = 301
+
+
