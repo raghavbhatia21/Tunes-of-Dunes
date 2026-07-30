@@ -17,6 +17,15 @@ const server = http.createServer((req, res) => {
         return;
     }
 
+    if (req.method === 'GET' && (req.url === '/sitemap.xml' || req.url === '/sitemap')) {
+        const sitemapPath = path.join(__dirname, '..', 'sitemap.xml');
+        if (fs.existsSync(sitemapPath)) {
+            res.writeHead(200, { 'Content-Type': 'application/xml; charset=utf-8' });
+            res.end(fs.readFileSync(sitemapPath));
+            return;
+        }
+    }
+
     if (req.method === 'POST' && req.url === '/publish') {
         let body = '';
         req.on('data', chunk => {

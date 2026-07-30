@@ -21,11 +21,13 @@ console.log(`Found ${files.length} files in content directory.`);
 
 // Get list of expected HTML files for cleanup and sitemap
 const expectedHtmlFiles = new Set();
-const sitemapUrls = [
-    '',
-    '/html/packages.html',
-    '/html/blog.html',
-    '/html/hotels.html'
+const todayIso = new Date().toISOString().split('T')[0];
+
+const sitemapEntries = [
+    { url: '', priority: '1.0', changefreq: 'daily', lastmod: todayIso },
+    { url: '/html/packages.html', priority: '0.9', changefreq: 'weekly', lastmod: todayIso },
+    { url: '/html/hotels.html', priority: '0.9', changefreq: 'weekly', lastmod: todayIso },
+    { url: '/html/blog.html', priority: '0.9', changefreq: 'daily', lastmod: todayIso }
 ];
 
 files.forEach(file => {
@@ -41,14 +43,13 @@ files.forEach(file => {
     // Use custom slug if provided, otherwise fallback to filename slug
     const slug = data.slug || file.replace('.md', '');
     expectedHtmlFiles.add(`${slug}.html`);
-    sitemapUrls.push(`/html/blogs/${slug}.html`);
 
     console.log(`Processing blog: ${slug} (${data.title})`);
 
     // Date parsing with robustness
     let postDate = '';
     let timestamp = 0;
-    let isoDate = new Date().toISOString().split('T')[0];
+    let isoDate = todayIso;
 
     if (data.date) {
         try {
@@ -63,7 +64,17 @@ files.forEach(file => {
         } catch (e) {
             console.error(`Error parsing date in ${file}:`, e);
         }
+    } else {
+        const stats = fs.statSync(filePath);
+        isoDate = stats.mtime.toISOString().split('T')[0];
     }
+
+    sitemapEntries.push({
+        url: `/html/blogs/${slug}.html`,
+        priority: '0.8',
+        changefreq: 'monthly',
+        lastmod: isoDate
+    });
 
     // Meta data for JSON listing
     blogPosts.push({
@@ -108,12 +119,13 @@ const dataContent = `const blogPosts = ${JSON.stringify(sortedPosts, null, 2)};`
 fs.writeFileSync(DATA_FILE, dataContent);
 
 // Generate Sitemap
-function generateSitemap(urls) {
-    const today = new Date().toISOString().split('T')[0];
-    const urlSet = urls.map(url => `
+function generateSitemap(entries) {
+    const urlSet = entries.map(entry => `
   <url>
-    <loc>${BASE_URL}${url}</loc>
-    <lastmod>${today}</lastmod>
+    <loc>${BASE_URL}${entry.url}</loc>
+    <lastmod>${entry.lastmod}</lastmod>
+    <changefreq>${entry.changefreq}</changefreq>
+    <priority>${entry.priority}</priority>
   </url>`).join('');
 
     return `<?xml version="1.0" encoding="UTF-8"?>
@@ -122,7 +134,7 @@ ${urlSet}
 </urlset>`;
 }
 
-const sitemapContent = generateSitemap(sitemapUrls);
+const sitemapContent = generateSitemap(sitemapEntries);
 fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemapContent);
 
 console.log(`Build complete! Generated ${blogPosts.length} blog posts, updated listing data, and generated sitemap.xml.`);

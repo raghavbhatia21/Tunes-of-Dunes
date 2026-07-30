@@ -22,8 +22,15 @@
 [[plugins]]
 package = "@netlify/plugin-sitemap"
 
-# Redirect rules for SEO
+# Redirect rules for dynamic SEO sitemap
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/.netlify/functions/sitemap"
+  status = 200
+  force = false
+
 [[redirects]]
   from = "/sitemap"
   to = "/sitemap.xml"
   status = 301
+
