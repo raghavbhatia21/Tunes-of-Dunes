@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
-    <loc>https://tunesofdunes.com/</loc>
-    <lastmod>2026-02-12</lastmod>
+    <loc>https://tunesofdunes.com</loc>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://tunesofdunes.com/html/packages.html</loc>
-    <lastmod>2026-02-12</lastmod>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://tunesofdunes.com/html/blog.html</loc>
-    <lastmod>2026-02-12</lastmod>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://tunesofdunes.com/html/hotels.html</loc>
-    <lastmod>2026-02-12</lastmod>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://tunesofdunes.com/html/blogs/best-time-to-visit.html</loc>
-    <lastmod>2026-02-12</lastmod>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://tunesofdunes.com/html/blogs/camel-safari-guide.html</loc>
-    <lastmod>2026-02-12</lastmod>
-  </url>
-  <url>
-    <loc>https://tunesofdunes.com/html/blogs/top-things-to-do.html</loc>
-    <lastmod>2026-02-12</lastmod>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://tunesofdunes.com/html/blogs/desert-festival-jaisalmer-2026.html</loc>
-    <lastmod>2026-02-12</lastmod>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://tunesofdunes.com/html/blogs/patwon-ki-haveli-jaisalmer.html</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://tunesofdunes.com/html/blogs/top-things-to-do.html</loc>
+    <lastmod>2026-07-30</lastmod>
   </url>
 </urlset>
