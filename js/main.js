@@ -658,7 +658,126 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- TAXI BOOKING FORM LOGIC ---
+    // --- TAXI BOOKING FORM & CITY AUTOCOMPLETE LOGIC ---
+    const INDIAN_CITIES = [
+        "Jaisalmer", "Jodhpur", "Jaipur", "Udaipur", "Bikaner", "Ajmer", "Pushkar", "Mount Abu",
+        "Chittorgarh", "Sawai Madhopur (Ranthambore)", "Alwar", "Bharatpur", "Kota", "Bundi",
+        "Jhalawar", "Pali", "Nagaur", "Jhunjhunu", "Sikar", "Barmer", "Pokhran", "Osian",
+        "Mandawa", "Nathdwara", "Rajsamand", "Dungarpur", "Banswara", "Hanumangarh", "Sri Ganganagar",
+        "Delhi", "New Delhi", "Gurgaon", "Noida", "Faridabad", "Ghaziabad", "Agra", "Mathura",
+        "Vrindavan", "Varanasi", "Lucknow", "Kanpur", "Prayagraj", "Ayodhya", "Bareilly", "Meerut",
+        "Amritsar", "Ludhiana", "Jalandhar", "Patiala", "Chandigarh", "Shimla", "Manali",
+        "Dharamshala", "Rishikesh", "Haridwar", "Dehradun", "Nainital", "Mussoorie", "Jammu",
+        "Srinagar", "Leh", "Gwalior", "Indore", "Bhopal", "Ujjain", "Jabalpur", "Raipur",
+        "Ahmedabad", "Vadodara", "Surat", "Rajkot", "Bhavnagar", "Bhuj", "Gandhinagar", "Jamnagar",
+        "Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad", "Goa", "Bengaluru", "Mysuru",
+        "Hyderabad", "Chennai", "Coimbatore", "Madurai", "Kochi", "Thiruvananthapuram",
+        "Visakhapatnam", "Vijayawada", "Kolkata", "Siliguri", "Darjeeling", "Patna", "Ranchi",
+        "Bhubaneswar", "Puri", "Guwahati", "Shillong", "Gangtok"
+    ];
+
+    function setupCityAutocomplete(inputId) {
+        const input = document.getElementById(inputId);
+        if (!input) return;
+
+        const container = input.closest('.autocomplete-container') || input.parentElement;
+        let activeIndex = -1;
+
+        input.addEventListener('input', () => {
+            closeAllDropdowns();
+            const query = input.value.trim().toLowerCase();
+            if (!query) return;
+
+            // Priority 1: Cities starting with typed string (e.g. 'j' -> Jaisalmer, Jodhpur, Jaipur)
+            let matches = INDIAN_CITIES.filter(city => city.toLowerCase().startsWith(query));
+
+            // Priority 2: Fallback to containing cities if < 3 starting matches
+            if (matches.length < 3) {
+                const containing = INDIAN_CITIES.filter(city => 
+                    city.toLowerCase().includes(query) && !city.toLowerCase().startsWith(query)
+                );
+                matches = matches.concat(containing);
+            }
+
+            if (matches.length === 0) return;
+
+            const dropdown = document.createElement('ul');
+            dropdown.className = 'city-autocomplete-dropdown';
+
+            matches.forEach((city) => {
+                const li = document.createElement('li');
+                li.className = 'city-autocomplete-item';
+
+                let displayHtml = city;
+                if (city.toLowerCase().startsWith(query)) {
+                    const matchText = city.substring(0, query.length);
+                    const restText = city.substring(query.length);
+                    displayHtml = `<mark>${matchText}</mark>${restText}`;
+                }
+
+                li.innerHTML = `<i class="fas fa-map-marker-alt"></i> <span>${displayHtml}</span>`;
+
+                li.addEventListener('click', () => {
+                    input.value = city;
+                    closeAllDropdowns();
+                });
+
+                dropdown.appendChild(li);
+            });
+
+            container.appendChild(dropdown);
+            activeIndex = -1;
+        });
+
+        input.addEventListener('keydown', (e) => {
+            const dropdown = container.querySelector('.city-autocomplete-dropdown');
+            if (!dropdown) return;
+            const items = dropdown.querySelectorAll('.city-autocomplete-item');
+            if (!items.length) return;
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                activeIndex = (activeIndex + 1) % items.length;
+                updateActiveItem(items);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                activeIndex = (activeIndex - 1 + items.length) % items.length;
+                updateActiveItem(items);
+            } else if (e.key === 'Enter') {
+                if (activeIndex > -1 && items[activeIndex]) {
+                    e.preventDefault();
+                    items[activeIndex].click();
+                }
+            } else if (e.key === 'Escape') {
+                closeAllDropdowns();
+            }
+        });
+
+        function updateActiveItem(items) {
+            items.forEach((item, idx) => {
+                if (idx === activeIndex) {
+                    item.classList.add('active');
+                    item.scrollIntoView({ block: 'nearest' });
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+    }
+
+    function closeAllDropdowns() {
+        document.querySelectorAll('.city-autocomplete-dropdown').forEach(el => el.remove());
+    }
+
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.autocomplete-container')) {
+            closeAllDropdowns();
+        }
+    });
+
+    setupCityAutocomplete('taxiFrom');
+    setupCityAutocomplete('taxiTo');
+
     const taxiBookingForm = document.getElementById('taxiBookingForm');
     if (taxiBookingForm) {
         taxiBookingForm.addEventListener('submit', (e) => {
